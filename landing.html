@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboo Shh! - The Ultimate Word Guessing Party Game</title>
+    <meta name="description" content="Taboo Shh! is the ultimate word-guessing party game for iOS and Android. Challenge your friends and family!">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0A1628;
+            --bg-secondary: #132337;
+            --bg-card: #1E3A5F;
+            --primary: #00D4AA;
+            --primary-light: #00F5C4;
+            --accent: #00B4D8;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+        }
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-logo img { width: 40px; height: 40px; border-radius: 10px; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 6px;
+            border-radius: 20px;
+        }
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--bg-primary);
+        }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--bg-primary);
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 170, 0.4);
+        }
+        .hero {
+            min-height: 100vh;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 120px 60px 60px;
+        }
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        .hero-text h1 span { color: var(--primary); font-style: italic; }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 450px;
+        }
+        .store-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
+            border-color: var(--primary);
+        }
+        .store-btn.coming-soon {
+            opacity: 0.7;
+            cursor: default;
+        }
+        .store-btn.coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+        .coming-soon-btn {
+            opacity: 0.7;
+            cursor: default;
+        }
+        .coming-soon-btn:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        .store-btn svg { width: 28px; height: 28px; }
+        .store-btn .store-text { text-align: left; }
+        .store-btn .store-text small { display: block; font-size: 11px; color: var(--text-secondary); }
+        .store-btn .store-text span { font-size: 16px; font-weight: 600; }
+        .hero-image { position: relative; display: flex; justify-content: center; align-items: center; min-height: 500px; }
+        .phone-mockup { position: relative; z-index: 2; }
+        .phone-mockup img {
+            width: 280px;
+            border-radius: 36px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        .hero-circle {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            opacity: 0.9;
+        }
+        .floating-cards-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            z-index: 3;
+        }
+        .floating-card {
+            position: absolute;
+            background: var(--bg-card);
+            padding: 12px 18px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .floating-card.card-1 { top: 0; right: 20px; }
+        .floating-card.card-2 { top: 25%; right: -30px; }
+        .floating-card.card-3 { bottom: 25%; left: -30px; }
+        .floating-card.card-4 { bottom: 0; left: 20px; }
+
+        .how-it-works {
+            padding: 100px 60px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        .section-subtitle {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 60px;
+        }
+        .how-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .how-features { display: flex; flex-direction: column; gap: 40px; }
+        .feature-item { text-align: left; display: flex; gap: 15px; }
+        .feature-item.right { text-align: right; flex-direction: row-reverse; }
+        .feature-number {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--bg-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .feature-item h4 { font-size: 1.1rem; margin-bottom: 5px; color: var(--text-primary); }
+        .feature-item p { font-size: 0.9rem; color: var(--text-secondary); }
+        .how-phone { position: relative; display: flex; justify-content: center; align-items: center; }
+        .how-phone img {
+            width: 260px;
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+        .how-circle {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .features { padding: 100px 60px; background: var(--bg-primary); }
+        .features-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .features-image { position: relative; }
+        .features-image img { width: 100%; max-width: 350px; border-radius: 20px; }
+        .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .feature-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 212, 170, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .feature-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 170, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .feature-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--text-primary); }
+        .feature-card p { font-size: 0.85rem; color: var(--text-secondary); }
+        .download {
+            padding: 80px 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .download-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .download-text h2 { font-size: 2.5rem; font-weight: 700; color: var(--bg-primary); margin-bottom: 15px; }
+        .download-text p { color: rgba(10, 22, 40, 0.8); margin-bottom: 30px; }
+        .download-btn {
+            display: inline-block;
+            background: var(--bg-primary);
+            color: var(--primary);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .download-image { display: flex; justify-content: center; }
+        .download-image img { width: 250px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+
+        .support { padding: 80px 60px; background: var(--bg-secondary); text-align: center; }
+        .support h2 { font-size: 2rem; margin-bottom: 15px; color: var(--text-primary); }
+        .support p { color: var(--text-secondary); margin-bottom: 25px; }
+        .support-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--bg-primary);
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .support-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4); }
+        .footer {
+            background: var(--bg-primary);
+            color: white;
+            padding: 60px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+        }
+        .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--primary); }
+        .footer-copy { color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 968px) {
+            .nav { padding: 20px 30px; }
+            .nav-links { display: none; }
+            .hero { padding: 100px 30px 60px; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { margin: 0 auto 30px; }
+            .store-buttons { justify-content: center; }
+            .hero-circle { width: 300px; height: 300px; }
+            .floating-cards-container { width: 350px; height: 350px; }
+            .floating-card { font-size: 0.8rem; padding: 10px 14px; }
+            .floating-card.card-2 { right: -10px; }
+            .floating-card.card-3 { left: -10px; }
+            .how-content { grid-template-columns: 1fr; }
+            .how-features { order: 2; }
+            .how-phone { order: 1; }
+            .feature-item, .feature-item.right { text-align: left; flex-direction: row; }
+            .features-content { grid-template-columns: 1fr; }
+            .features-image { display: flex; justify-content: center; }
+            .features-list { grid-template-columns: 1fr; }
+            .download-content { grid-template-columns: 1fr; text-align: center; }
+            .how-it-works, .features, .download, .support { padding: 60px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="#" class="nav-logo">
+            <img src="icon.png" alt="Taboo Shh!">
+            <span data-en="Taboo Shh!" data-tr="Tabu Şşş!">Taboo Shh!</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features" data-en="Features" data-tr="Özellikler">Features</a></li>
+            <li><a href="#how-it-works" data-en="How It Works" data-tr="Nasıl Oynanır">How It Works</a></li>
+            <li><a href="#support" data-en="Support" data-tr="Destek">Support</a></li>
+            <li><a href="index.html" data-en="Privacy" data-tr="Gizlilik">Privacy</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="tr">TR</button>
+            </div>
+            <a href="#download" class="nav-cta" data-en="Download" data-tr="İndir">Download</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 data-en="Your Party Game,<br><span>Just a Tap Away</span>" data-tr="Parti Oyununuz,<br><span>Bir Dokunuşla</span>">Your Party Game,<br><span>Just a Tap Away</span></h1>
+                <p data-en="Experience the ultimate word-guessing fun with Taboo Shh! Challenge friends, skip the taboo words, and score big. Available in English and Turkish." data-tr="Tabu Şşş! ile kelime tahmin eğlencesinin zirvesini yaşayın! Arkadaşlarınıza meydan okuyun, tabu kelimeleri atlayın ve büyük puanlar kazanın. İngilizce ve Türkçe olarak mevcut.">Experience the ultimate word-guessing fun with Taboo Shh! Challenge friends, skip the taboo words, and score big. Available in English and Turkish.</p>
+                <div class="store-buttons">
+                    <div class="store-btn coming-soon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                        <div class="store-text">
+                            <small data-en="Coming Soon" data-tr="Çok Yakında">Coming Soon</small>
+                            <span>App Store</span>
+                        </div>
+                    </div>
+                    <div class="store-btn coming-soon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+                        <div class="store-text">
+                            <small data-en="Coming Soon" data-tr="Çok Yakında">Coming Soon</small>
+                            <span>Google Play</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-circle"></div>
+                <div class="phone-mockup"><img src="icon.png" alt="Taboo Shh! App"></div>
+                <div class="floating-cards-container">
+                    <div class="floating-card card-1" data-en="7 Categories" data-tr="7 Kategori">7 Categories</div>
+                    <div class="floating-card card-2" data-en="2 Languages" data-tr="2 Dil">2 Languages</div>
+                    <div class="floating-card card-3" data-en="500+ Cards" data-tr="500+ Kart">500+ Cards</div>
+                    <div class="floating-card card-4" data-en="Works Offline" data-tr="Çevrimdışı Çalışır">Works Offline</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <h2 class="section-title" data-en="How Taboo Shh! Works" data-tr="Tabu Şşş! Nasıl Oynanır">How Taboo Shh! Works</h2>
+        <p class="section-subtitle" data-en="Describe the word, avoid the taboo clues, and let your team guess. Simple rules, endless fun for everyone!" data-tr="Kelimeyi anlatın, tabu ipuçlarından kaçının ve takımınızın tahmin etmesini sağlayın. Basit kurallar, herkes için sonsuz eğlence!">Describe the word, avoid the taboo clues, and let your team guess. Simple rules, endless fun for everyone!</p>
+        <div class="how-content">
+            <div class="how-features">
+                <div class="feature-item">
+                    <div class="feature-number">1</div>
+                    <div>
+                        <h4 data-en="See the Word" data-tr="Kelimeyi Gör">See the Word</h4>
+                        <p data-en="A secret word appears with forbidden clues you can't say." data-tr="Söyleyemeyeceğiniz yasak ipuçlarıyla birlikte gizli bir kelime belirir.">A secret word appears with forbidden clues you can't say.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-number">2</div>
+                    <div>
+                        <h4 data-en="Describe It" data-tr="Anlat">Describe It</h4>
+                        <p data-en="Get creative! Explain without using taboo words." data-tr="Yaratıcı olun! Tabu kelimeleri kullanmadan açıklayın.">Get creative! Explain without using taboo words.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="how-phone">
+                <div class="how-circle"></div>
+                <img src="icon.png" alt="Taboo Shh! Gameplay">
+            </div>
+            <div class="how-features">
+                <div class="feature-item right">
+                    <div class="feature-number">3</div>
+                    <div>
+                        <h4 data-en="Team Guesses" data-tr="Takım Tahmin Eder">Team Guesses</h4>
+                        <p data-en="Your team shouts answers before time runs out!" data-tr="Takımınız süre dolmadan cevapları bağırsın!">Your team shouts answers before time runs out!</p>
+                    </div>
+                </div>
+                <div class="feature-item right">
+                    <div class="feature-number">4</div>
+                    <div>
+                        <h4 data-en="Score and Win" data-tr="Puan Al ve Kazan">Score and Win</h4>
+                        <p data-en="Correct guess? Score a point. Most points wins!" data-tr="Doğru tahmin? Bir puan kazanın. En çok puan alan kazanır!">Correct guess? Score a point. Most points wins!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 60px;" data-en="Ready to Play?" data-tr="Oynamaya Hazır mısınız?">Ready to Play?</h2>
+        <div class="features-content">
+            <div class="features-image"><img src="icon.png" alt="Taboo Shh! Features"></div>
+            <div>
+                <div class="features-list">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">S</div>
+                        <h4 data-en="Fully Customizable" data-tr="Tamamen Özelleştirilebilir">Fully Customizable</h4>
+                        <p data-en="Adjust timer, rounds, pass limits, and scoring rules to your liking." data-tr="Zamanlayıcı, tur sayısı, pas limitleri ve puanlama kurallarını istediğiniz gibi ayarlayın.">Adjust timer, rounds, pass limits, and scoring rules to your liking.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">O</div>
+                        <h4 data-en="Works Offline" data-tr="Çevrimdışı Çalışır">Works Offline</h4>
+                        <p data-en="No internet needed. Play anywhere, anytime." data-tr="İnternet gerekmez. Her yerde, her zaman oynayın.">No internet needed. Play anywhere, anytime.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">C</div>
+                        <h4 data-en="Multiple Categories" data-tr="Birden Fazla Kategori">Multiple Categories</h4>
+                        <p data-en="Movies, Sports, Food and Drinks, and more!" data-tr="Filmler, Spor, Yiyecek ve İçecekler ve daha fazlası!">Movies, Sports, Food and Drinks, and more!</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">L</div>
+                        <h4 data-en="Two Languages" data-tr="İki Dil">Two Languages</h4>
+                        <p data-en="Play in English or Turkish with full support." data-tr="Tam destekle İngilizce veya Türkçe oynayın.">Play in English or Turkish with full support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="download" id="download">
+        <div class="download-content">
+            <div class="download-text">
+                <h2 data-en="Download Taboo Shh!" data-tr="Tabu Şşş! İndirin">Download Taboo Shh!</h2>
+                <p data-en="Experience hassle-free word guessing with Taboo Shh! Available now on iOS and Android." data-tr="Tabu Şşş! ile sorunsuz kelime tahmininin keyfini çıkarın! Şimdi iOS ve Android'de mevcut.">Experience hassle-free word guessing with Taboo Shh! Available now on iOS and Android.</p>
+                <span class="download-btn coming-soon-btn" data-en="Coming Soon" data-tr="Çok Yakında">Coming Soon</span>
+            </div>
+            <div class="download-image"><img src="icon.png" alt="Download Taboo Shh!"></div>
+        </div>
+    </section>
+
+    <section class="support" id="support">
+        <h2 data-en="Need Help?" data-tr="Yardıma mı İhtiyacınız Var?">Need Help?</h2>
+        <p data-en="Have questions, feedback, or need support? We are here to help!" data-tr="Sorularınız, geri bildirimleriniz veya desteğe mi ihtiyacınız var? Yardımcı olmak için buradayız!">Have questions, feedback, or need support? We are here to help!</p>
+        <a href="mailto:dev.ozelalisen@gmail.com" class="support-btn" data-en="Contact Support" data-tr="Destekle İletişime Geçin">Contact Support</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html" data-en="Privacy Policy" data-tr="Gizlilik Politikası">Privacy Policy</a>
+            <a href="#support" data-en="Support" data-tr="Destek">Support</a>
+            <a href="#features" data-en="Features" data-tr="Özellikler">Features</a>
+        </div>
+        <p class="footer-copy">© 2025 Ozel Alisen Berat. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const translations = { en: 'en', tr: 'tr' };
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.dataset[lang];
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+
+            localStorage.setItem('taboo-lang', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        });
+
+        const savedLang = localStorage.getItem('taboo-lang');
+        if (savedLang && (savedLang === 'en' || savedLang === 'tr')) {
+            setLanguage(savedLang);
+        }
+    </script>
+</body>
+</html>
