@@ -550,12 +550,16 @@
     </footer>
 
     <script>
-        const translations = { en: 'en', tr: 'tr' };
         let currentLang = 'en';
 
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
+            
+            // Update URL with language parameter for sharing
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url);
             
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
@@ -572,6 +576,9 @@
                 }
             });
 
+            // Update page title
+            document.title = lang === 'tr' ? 'Tabu Şşş! - En İyi Kelime Tahmin Parti Oyunu' : 'Taboo Shh! - The Ultimate Word Guessing Party Game';
+
             localStorage.setItem('taboo-lang', lang);
         }
 
@@ -579,8 +586,14 @@
             btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
         });
 
+        // Check URL parameter first, then localStorage, then default to 'en'
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
         const savedLang = localStorage.getItem('taboo-lang');
-        if (savedLang && (savedLang === 'en' || savedLang === 'tr')) {
+        
+        if (urlLang && (urlLang === 'en' || urlLang === 'tr')) {
+            setLanguage(urlLang);
+        } else if (savedLang && (savedLang === 'en' || savedLang === 'tr')) {
             setLanguage(savedLang);
         }
     </script>

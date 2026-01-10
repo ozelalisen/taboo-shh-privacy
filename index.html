@@ -3,242 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Taboo Shh!</title>
+    <title data-en="Privacy Policy - Taboo Shh!" data-tr="Gizlilik Politikası - Tabu Şşş!">Privacy Policy - Taboo Shh!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #fafafa;
+        :root {
+            --bg-primary: #0A1628;
+            --bg-secondary: #132337;
+            --bg-card: #1E3A5F;
+            --primary: #00D4AA;
+            --primary-light: #00F5C4;
+            --accent: #00B4D8;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
         }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        h2 { color: #34495e; margin-top: 30px; }
-        h3 { color: #5d6d7e; margin-top: 20px; }
-        .last-updated { color: #7f8c8d; font-style: italic; margin-bottom: 20px; }
-        table { border-collapse: collapse; width: 100%; margin: 15px 0; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f8f9fa; }
-        .toc { background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
-        .toc h3 { margin-top: 0; color: #2c3e50; }
-        .toc ul { list-style: none; padding-left: 0; }
-        .toc li { margin: 8px 0; }
-        .toc a { color: #3498db; text-decoration: none; }
-        .toc a:hover { text-decoration: underline; }
-        .highlight-box { background-color: #e8f6f3; border-left: 4px solid #1abc9c; padding: 15px; margin: 15px 0; }
-        .no-collect { background-color: #eafaf1; border: 1px solid #27ae60; padding: 15px; border-radius: 8px; margin: 15px 0; }
-        a { color: #3498db; }
-        hr { border: none; border-top: 1px solid #ddd; margin: 30px 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: var(--bg-primary);
+            border-bottom: 1px solid rgba(0, 212, 170, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-logo img { width: 40px; height: 40px; border-radius: 10px; }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 6px;
+            border-radius: 20px;
+        }
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--bg-primary);
+        }
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .back-link:hover { opacity: 0.8; }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px 60px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .intro {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            padding: 20px 25px;
+            border-radius: 0 12px 12px 0;
+            margin: 25px 0;
+        }
+        .highlight-box strong { color: var(--primary); }
+        .no-collect {
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid var(--primary);
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        .no-collect strong { color: var(--primary); }
+        .toc {
+            background: var(--bg-secondary);
+            padding: 25px 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        .toc h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .toc ul { list-style: none; }
+        .toc li { margin: 10px 0; }
+        .toc a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .toc a:hover { color: var(--primary); }
+        h2 {
+            color: var(--text-primary);
+            font-size: 1.4rem;
+            margin: 40px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 212, 170, 0.2);
+        }
+        h3 {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin: 25px 0 12px;
+        }
+        p { color: var(--text-secondary); margin-bottom: 15px; }
+        ul, ol {
+            color: var(--text-secondary);
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li { margin: 8px 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        td { color: var(--text-secondary); }
+        a { color: var(--accent); }
+        a:hover { color: var(--primary); }
+        hr {
+            border: none;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+            margin: 40px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0, 212, 170, 0.1);
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 15px 20px; }
+            .container { padding: 30px 20px 50px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p class="last-updated">Last updated: January 9, 2026</p>
+    <nav class="nav">
+        <a href="landing.html" class="nav-logo">
+            <img src="icon.png" alt="Taboo Shh!">
+            <span data-en="Taboo Shh!" data-tr="Tabu Şşş!">Taboo Shh!</span>
+        </a>
+        <div class="nav-right">
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="tr">TR</button>
+            </div>
+            <a href="landing.html" class="back-link" data-en="← Back to Home" data-tr="← Ana Sayfaya Dön">← Back to Home</a>
+        </div>
+    </nav>
 
-    <p>This Privacy Policy describes how <strong>Taboo Shh!</strong> ("the App," "we," "us," or "our"), developed by Ozel Alisen Berat, handles information when you use our mobile application available on Google Play and Apple App Store.</p>
+    <div class="container">
+        <h1 data-en="Privacy Policy" data-tr="Gizlilik Politikası">Privacy Policy</h1>
+        <p class="last-updated" data-en="Last updated: January 9, 2026" data-tr="Son güncelleme: 9 Ocak 2026">Last updated: January 9, 2026</p>
 
-    <div class="no-collect">
-        <strong>Privacy First:</strong> Taboo Shh! is designed with your privacy as a priority. We do not collect, store, or transmit any personal information to external servers. Your data stays on your device.
-    </div>
+        <p class="intro" data-en="This Privacy Policy describes how <strong>Taboo Shh!</strong> (&quot;the App,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;), developed by Ozel Alisen Berat, handles information when you use our mobile application available on Google Play and Apple App Store." data-tr="Bu Gizlilik Politikası, Ozel Alisen Berat tarafından geliştirilen <strong>Tabu Şşş!</strong> (&quot;Uygulama,&quot; &quot;biz&quot; veya &quot;bizim&quot;) uygulamasının, Google Play ve Apple App Store'da bulunan mobil uygulamamızı kullandığınızda bilgileri nasıl işlediğini açıklar.">This Privacy Policy describes how <strong>Taboo Shh!</strong> ("the App," "we," "us," or "our"), developed by Ozel Alisen Berat, handles information when you use our mobile application available on Google Play and Apple App Store.</p>
 
-    <div class="toc">
-        <h3>Table of Contents</h3>
+        <div class="no-collect">
+            <strong data-en="Privacy First:" data-tr="Önce Gizlilik:">Privacy First:</strong>
+            <span data-en="Taboo Shh! is designed with your privacy as a priority. We do not collect, store, or transmit any personal information to external servers. Your data stays on your device." data-tr="Tabu Şşş! gizliliğinizi öncelik olarak alarak tasarlanmıştır. Harici sunuculara herhangi bir kişisel bilgi toplamıyor, saklamıyor veya iletmiyoruz. Verileriniz cihazınızda kalır.">Taboo Shh! is designed with your privacy as a priority. We do not collect, store, or transmit any personal information to external servers. Your data stays on your device.</span>
+        </div>
+
+        <div class="toc">
+            <h3 data-en="Table of Contents" data-tr="İçindekiler">Table of Contents</h3>
+            <ul>
+                <li><a href="#information-collection" data-en="1. Information We Collect" data-tr="1. Topladığımız Bilgiler">1. Information We Collect</a></li>
+                <li><a href="#how-we-use" data-en="2. How We Use Information" data-tr="2. Bilgileri Nasıl Kullanıyoruz">2. How We Use Information</a></li>
+                <li><a href="#legal-basis" data-en="3. Legal Basis for Processing (GDPR)" data-tr="3. İşleme için Yasal Dayanak (GDPR)">3. Legal Basis for Processing (GDPR)</a></li>
+                <li><a href="#data-sharing" data-en="4. Data Sharing and Disclosure" data-tr="4. Veri Paylaşımı ve Açıklama">4. Data Sharing and Disclosure</a></li>
+                <li><a href="#in-app-purchases" data-en="5. In-App Purchases" data-tr="5. Uygulama İçi Satın Almalar">5. In-App Purchases</a></li>
+                <li><a href="#third-party" data-en="6. Third-Party Services" data-tr="6. Üçüncü Taraf Hizmetleri">6. Third-Party Services</a></li>
+                <li><a href="#children" data-en="7. Children's Privacy (COPPA)" data-tr="7. Çocukların Gizliliği (COPPA)">7. Children's Privacy (COPPA)</a></li>
+                <li><a href="#security" data-en="8. Data Security" data-tr="8. Veri Güvenliği">8. Data Security</a></li>
+                <li><a href="#retention" data-en="9. Data Retention" data-tr="9. Veri Saklama">9. Data Retention</a></li>
+                <li><a href="#your-rights" data-en="10. Your Rights and Choices" data-tr="10. Haklarınız ve Seçenekleriniz">10. Your Rights and Choices</a></li>
+                <li><a href="#ccpa" data-en="11. California Privacy Rights (CCPA/CPRA)" data-tr="11. Kaliforniya Gizlilik Hakları (CCPA/CPRA)">11. California Privacy Rights (CCPA/CPRA)</a></li>
+                <li><a href="#international" data-en="12. International Users" data-tr="12. Uluslararası Kullanıcılar">12. International Users</a></li>
+                <li><a href="#changes" data-en="13. Changes to This Privacy Policy" data-tr="13. Bu Gizlilik Politikasındaki Değişiklikler">13. Changes to This Privacy Policy</a></li>
+                <li><a href="#contact" data-en="14. Contact Us" data-tr="14. Bize Ulaşın">14. Contact Us</a></li>
+            </ul>
+        </div>
+
+        <h2 id="information-collection" data-en="1. Information We Collect" data-tr="1. Topladığımız Bilgiler">1. Information We Collect</h2>
+        <p data-en="<strong>Taboo Shh!</strong> is designed with your privacy in mind. We do not collect, store, or transmit any personal information to external servers." data-tr="<strong>Tabu Şşş!</strong> gizliliğiniz düşünülerek tasarlanmıştır. Harici sunuculara herhangi bir kişisel bilgi toplamıyor, saklamıyor veya iletmiyoruz."><strong>Taboo Shh!</strong> is designed with your privacy in mind. We do not collect, store, or transmit any personal information to external servers.</p>
+        
+        <h3 data-en="Data We Do NOT Collect:" data-tr="Toplamadığımız Veriler:">Data We Do NOT Collect:</h3>
+        <table>
+            <tr>
+                <th data-en="Data Type" data-tr="Veri Türü">Data Type</th>
+                <th data-en="Collected?" data-tr="Toplanıyor mu?">Collected?</th>
+            </tr>
+            <tr><td data-en="Personal identifiers (name, email, phone)" data-tr="Kişisel tanımlayıcılar (ad, e-posta, telefon)">Personal identifiers (name, email, phone)</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Location data" data-tr="Konum verileri">Location data</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Contacts or phonebook" data-tr="Kişiler veya telefon rehberi">Contacts or phonebook</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Photos, videos, or files" data-tr="Fotoğraflar, videolar veya dosyalar">Photos, videos, or files</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Microphone or audio recordings" data-tr="Mikrofon veya ses kayıtları">Microphone or audio recordings</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Financial or payment information" data-tr="Finansal veya ödeme bilgileri">Financial or payment information</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Health data" data-tr="Sağlık verileri">Health data</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Device identifiers for tracking" data-tr="İzleme için cihaz tanımlayıcıları">Device identifiers for tracking</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Browsing history" data-tr="Tarama geçmişi">Browsing history</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="SMS or call logs" data-tr="SMS veya arama kayıtları">SMS or call logs</td><td data-en="No" data-tr="Hayır">No</td></tr>
+            <tr><td data-en="Advertising ID" data-tr="Reklam Kimliği">Advertising ID</td><td data-en="No" data-tr="Hayır">No</td></tr>
+        </table>
+
+        <h3 data-en="Data Stored Locally on Your Device:" data-tr="Cihazınızda Yerel Olarak Saklanan Veriler:">Data Stored Locally on Your Device:</h3>
+        <p data-en="The app stores the following data locally on your device only:" data-tr="Uygulama aşağıdaki verileri yalnızca cihazınızda yerel olarak saklar:">The app stores the following data locally on your device only:</p>
         <ul>
-            <li><a href="#information-collection">1. Information We Collect</a></li>
-            <li><a href="#how-we-use">2. How We Use Information</a></li>
-            <li><a href="#legal-basis">3. Legal Basis for Processing (GDPR)</a></li>
-            <li><a href="#data-sharing">4. Data Sharing and Disclosure</a></li>
-            <li><a href="#in-app-purchases">5. In-App Purchases</a></li>
-            <li><a href="#third-party">6. Third-Party Services</a></li>
-            <li><a href="#children">7. Children's Privacy (COPPA)</a></li>
-            <li><a href="#security">8. Data Security</a></li>
-            <li><a href="#retention">9. Data Retention</a></li>
-            <li><a href="#your-rights">10. Your Rights and Choices</a></li>
-            <li><a href="#ccpa">11. California Privacy Rights (CCPA/CPRA)</a></li>
-            <li><a href="#international">12. International Users</a></li>
-            <li><a href="#changes">13. Changes to This Privacy Policy</a></li>
-            <li><a href="#contact">14. Contact Us</a></li>
+            <li data-en="Game preferences and settings" data-tr="Oyun tercihleri ve ayarları">Game preferences and settings</li>
+            <li data-en="Game progress and scores" data-tr="Oyun ilerlemesi ve puanları">Game progress and scores</li>
+            <li data-en="Premium purchase status (synced via app store)" data-tr="Premium satın alma durumu (uygulama mağazası aracılığıyla senkronize edilir)">Premium purchase status (synced via app store)</li>
         </ul>
-    </div>
+        
+        <div class="highlight-box">
+            <strong data-en="Important:" data-tr="Önemli:">Important:</strong>
+            <span data-en="This local data:" data-tr="Bu yerel veri:">This local data:</span>
+            <ul>
+                <li data-en="Never leaves your device" data-tr="Asla cihazınızdan ayrılmaz">Never leaves your device</li>
+                <li data-en="Is not transmitted to any external server" data-tr="Herhangi bir harici sunucuya iletilmez">Is not transmitted to any external server</li>
+                <li data-en="Is not shared with any third parties" data-tr="Herhangi bir üçüncü tarafla paylaşılmaz">Is not shared with any third parties</li>
+                <li data-en="Can be deleted by clearing app data or uninstalling the app" data-tr="Uygulama verilerini temizleyerek veya uygulamayı kaldırarak silinebilir">Can be deleted by clearing app data or uninstalling the app</li>
+            </ul>
+        </div>
 
-    <h2 id="information-collection">1. Information We Collect</h2>
-    <p><strong>Taboo Shh!</strong> is designed with your privacy in mind. We do not collect, store, or transmit any personal information to external servers.</p>
-    
-    <h3>Data We Do NOT Collect:</h3>
-    <table>
-        <tr>
-            <th>Data Type</th>
-            <th>Collected?</th>
-        </tr>
-        <tr><td>Personal identifiers (name, email, phone)</td><td>No</td></tr>
-        <tr><td>Location data</td><td>No</td></tr>
-        <tr><td>Contacts or phonebook</td><td>No</td></tr>
-        <tr><td>Photos, videos, or files</td><td>No</td></tr>
-        <tr><td>Microphone or audio recordings</td><td>No</td></tr>
-        <tr><td>Financial or payment information</td><td>No</td></tr>
-        <tr><td>Health data</td><td>No</td></tr>
-        <tr><td>Device identifiers for tracking</td><td>No</td></tr>
-        <tr><td>Browsing history</td><td>No</td></tr>
-        <tr><td>SMS or call logs</td><td>No</td></tr>
-        <tr><td>Advertising ID</td><td>No</td></tr>
-    </table>
-
-    <h3>Data Stored Locally on Your Device:</h3>
-    <p>The app stores the following data locally on your device only:</p>
-    <ul>
-        <li>Game preferences and settings</li>
-        <li>Game progress and scores</li>
-        <li>Premium purchase status (synced via app store)</li>
-    </ul>
-    
-    <div class="highlight-box">
-        <strong>Important:</strong> This local data:
+        <h2 id="how-we-use" data-en="2. How We Use Information" data-tr="2. Bilgileri Nasıl Kullanıyoruz">2. How We Use Information</h2>
+        <p data-en="Since we do not collect personal data, we do not use your information for any purpose. Local device storage is used solely to:" data-tr="Kişisel veri toplamadığımız için bilgilerinizi herhangi bir amaçla kullanmıyoruz. Yerel cihaz depolaması yalnızca şunlar için kullanılır:">Since we do not collect personal data, we do not use your information for any purpose. Local device storage is used solely to:</p>
         <ul>
-            <li>Never leaves your device</li>
-            <li>Is not transmitted to any external server</li>
-            <li>Is not shared with any third parties</li>
-            <li>Can be deleted by clearing app data or uninstalling the app</li>
+            <li data-en="Save your game preferences" data-tr="Oyun tercihlerinizi kaydetmek">Save your game preferences</li>
+            <li data-en="Remember your settings between sessions" data-tr="Oturumlar arasında ayarlarınızı hatırlamak">Remember your settings between sessions</li>
+            <li data-en="Restore your premium purchase status" data-tr="Premium satın alma durumunuzu geri yüklemek">Restore your premium purchase status</li>
         </ul>
+
+        <h2 id="legal-basis" data-en="3. Legal Basis for Processing (GDPR)" data-tr="3. İşleme için Yasal Dayanak (GDPR)">3. Legal Basis for Processing (GDPR)</h2>
+        <p data-en="For users in the European Economic Area (EEA), United Kingdom, and Switzerland, we want to be transparent about our data practices:" data-tr="Avrupa Ekonomik Alanı (AEA), Birleşik Krallık ve İsviçre'deki kullanıcılar için veri uygulamalarımız hakkında şeffaf olmak istiyoruz:">For users in the European Economic Area (EEA), United Kingdom, and Switzerland, we want to be transparent about our data practices:</p>
+        <ul>
+            <li data-en="<strong>No Personal Data Processing:</strong> Since we do not collect or process personal data, there is no legal basis required for data processing under GDPR." data-tr="<strong>Kişisel Veri İşleme Yok:</strong> Kişisel veri toplamadığımız veya işlemediğimiz için GDPR kapsamında veri işleme için yasal dayanak gerekmez."><strong>No Personal Data Processing:</strong> Since we do not collect or process personal data, there is no legal basis required for data processing under GDPR.</li>
+            <li data-en="<strong>Local Storage Only:</strong> Data stored locally on your device for app functionality does not constitute personal data processing by us." data-tr="<strong>Yalnızca Yerel Depolama:</strong> Uygulama işlevselliği için cihazınızda yerel olarak saklanan veriler, tarafımızca kişisel veri işleme teşkil etmez."><strong>Local Storage Only:</strong> Data stored locally on your device for app functionality does not constitute personal data processing by us.</li>
+            <li data-en="<strong>In-App Purchases:</strong> Payment processing is handled entirely by Google Play or Apple App Store under their respective privacy policies and legal bases." data-tr="<strong>Uygulama İçi Satın Almalar:</strong> Ödeme işlemleri tamamen Google Play veya Apple App Store tarafından kendi gizlilik politikaları ve yasal dayanakları kapsamında gerçekleştirilir."><strong>In-App Purchases:</strong> Payment processing is handled entirely by Google Play or Apple App Store under their respective privacy policies and legal bases.</li>
+        </ul>
+
+        <h2 id="data-sharing" data-en="4. Data Sharing and Disclosure" data-tr="4. Veri Paylaşımı ve Açıklama">4. Data Sharing and Disclosure</h2>
+        <p data-en="We do not share, sell, rent, or trade any user data with third parties because we do not collect any personal data." data-tr="Herhangi bir kişisel veri toplamadığımız için kullanıcı verilerini üçüncü taraflarla paylaşmıyor, satmıyor, kiralamıyor veya takas etmiyoruz.">We do not share, sell, rent, or trade any user data with third parties because we do not collect any personal data.</p>
+        <p data-en="<strong>We do NOT:</strong>" data-tr="<strong>Yapmadıklarımız:</strong>"><strong>We do NOT:</strong></p>
+        <ul>
+            <li data-en="Sell personal or sensitive user data" data-tr="Kişisel veya hassas kullanıcı verilerini satmak">Sell personal or sensitive user data</li>
+            <li data-en="Share data with advertisers" data-tr="Reklamcılarla veri paylaşmak">Share data with advertisers</li>
+            <li data-en="Use data for targeted advertising" data-tr="Hedefli reklamcılık için veri kullanmak">Use data for targeted advertising</li>
+            <li data-en="Transfer data to third-party analytics services" data-tr="Verileri üçüncü taraf analiz hizmetlerine aktarmak">Transfer data to third-party analytics services</li>
+            <li data-en="Share data with data brokers" data-tr="Veri simsarlarıyla veri paylaşmak">Share data with data brokers</li>
+        </ul>
+
+        <h2 id="in-app-purchases" data-en="5. In-App Purchases" data-tr="5. Uygulama İçi Satın Almalar">5. In-App Purchases</h2>
+        <p data-en="The app offers optional in-app purchases processed entirely by Google Play Store or Apple App Store. We do not have access to your payment information. All payment processing is handled securely by:" data-tr="Uygulama, tamamen Google Play Store veya Apple App Store tarafından işlenen isteğe bağlı uygulama içi satın almalar sunar. Ödeme bilgilerinize erişimimiz yoktur. Tüm ödeme işlemleri güvenli bir şekilde şu tarafından gerçekleştirilir:">The app offers optional in-app purchases processed entirely by Google Play Store or Apple App Store. We do not have access to your payment information. All payment processing is handled securely by:</p>
+        <ul>
+            <li><strong>Google Play:</strong> <span data-en="Subject to" data-tr="Tabi olduğu">Subject to</span> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a></li>
+            <li><strong>Apple App Store:</strong> <span data-en="Subject to" data-tr="Tabi olduğu">Subject to</span> <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a></li>
+        </ul>
+        <p data-en="We encourage you to review these third-party privacy policies to understand how your payment information is handled." data-tr="Ödeme bilgilerinizin nasıl işlendiğini anlamak için bu üçüncü taraf gizlilik politikalarını incelemenizi öneririz.">We encourage you to review these third-party privacy policies to understand how your payment information is handled.</p>
+
+        <h2 id="third-party" data-en="6. Third-Party Services" data-tr="6. Üçüncü Taraf Hizmetleri">6. Third-Party Services</h2>
+        <p data-en="The app does not integrate with:" data-tr="Uygulama şunlarla entegre değildir:">The app does not integrate with:</p>
+        <ul>
+            <li data-en="Third-party analytics services (e.g., Google Analytics, Firebase Analytics)" data-tr="Üçüncü taraf analiz hizmetleri (örn. Google Analytics, Firebase Analytics)">Third-party analytics services (e.g., Google Analytics, Firebase Analytics)</li>
+            <li data-en="Advertising networks or SDKs" data-tr="Reklam ağları veya SDK'lar">Advertising networks or SDKs</li>
+            <li data-en="Social media tracking or login" data-tr="Sosyal medya takibi veya girişi">Social media tracking or login</li>
+            <li data-en="Crash reporting services that collect personal data" data-tr="Kişisel veri toplayan çökme raporlama hizmetleri">Crash reporting services that collect personal data</li>
+            <li data-en="Any external APIs that process user data" data-tr="Kullanıcı verilerini işleyen herhangi bir harici API">Any external APIs that process user data</li>
+        </ul>
+
+        <h2 id="children" data-en="7. Children's Privacy (COPPA)" data-tr="7. Çocukların Gizliliği (COPPA)">7. Children's Privacy (COPPA)</h2>
+        <p data-en="Our app is safe for users of all ages, including children under 13 years of age. We comply with:" data-tr="Uygulamamız, 13 yaşın altındaki çocuklar dahil her yaştan kullanıcı için güvenlidir. Uyduğumuz düzenlemeler:">Our app is safe for users of all ages, including children under 13 years of age. We comply with:</p>
+        <ul>
+            <li data-en="Children's Online Privacy Protection Act (COPPA) - United States" data-tr="Çocukların Çevrimiçi Gizliliğini Koruma Yasası (COPPA) - Amerika Birleşik Devletleri">Children's Online Privacy Protection Act (COPPA) - United States</li>
+            <li data-en="General Data Protection Regulation (GDPR) provisions for children - European Union" data-tr="Genel Veri Koruma Yönetmeliği (GDPR) çocuklara ilişkin hükümler - Avrupa Birliği">General Data Protection Regulation (GDPR) provisions for children - European Union</li>
+            <li data-en="Similar child protection regulations worldwide" data-tr="Dünya genelinde benzer çocuk koruma düzenlemeleri">Similar child protection regulations worldwide</li>
+        </ul>
+        <p data-en="Since we do not collect any personal information from any users, we do not collect personal information from children. Parents and guardians can allow their children to use the app without concern for data collection." data-tr="Herhangi bir kullanıcıdan kişisel bilgi toplamadığımız için çocuklardan da kişisel bilgi toplamıyoruz. Ebeveynler ve veliler, veri toplama endişesi olmadan çocuklarının uygulamayı kullanmasına izin verebilir.">Since we do not collect any personal information from any users, we do not collect personal information from children. Parents and guardians can allow their children to use the app without concern for data collection.</p>
+        <p data-en="If you are a parent or guardian and believe we have inadvertently collected information about your child, please <a href='#contact'>contact us</a> immediately." data-tr="Ebeveyn veya veli iseniz ve çocuğunuz hakkında yanlışlıkla bilgi topladığımıza inanıyorsanız, lütfen hemen <a href='#contact'>bizimle iletişime geçin</a>.">If you are a parent or guardian and believe we have inadvertently collected information about your child, please <a href="#contact">contact us</a> immediately.</p>
+
+        <h2 id="security" data-en="8. Data Security" data-tr="8. Veri Güvenliği">8. Data Security</h2>
+        <p data-en="Although we do not collect personal data, we take security seriously:" data-tr="Kişisel veri toplamamıza rağmen güvenliği ciddiye alıyoruz:">Although we do not collect personal data, we take security seriously:</p>
+        <ul>
+            <li data-en="The app does not require internet connectivity for core gameplay" data-tr="Uygulama, temel oyun için internet bağlantısı gerektirmez">The app does not require internet connectivity for core gameplay</li>
+            <li data-en="No data is transmitted to external servers" data-tr="Harici sunuculara veri iletilmez">No data is transmitted to external servers</li>
+            <li data-en="Local data is stored using standard device security measures provided by iOS and Android" data-tr="Yerel veriler, iOS ve Android tarafından sağlanan standart cihaz güvenlik önlemleri kullanılarak saklanır">Local data is stored using standard device security measures provided by iOS and Android</li>
+            <li data-en="The app does not request unnecessary permissions" data-tr="Uygulama gereksiz izinler istemez">The app does not request unnecessary permissions</li>
+        </ul>
+
+        <h2 id="retention" data-en="9. Data Retention" data-tr="9. Veri Saklama">9. Data Retention</h2>
+        <p data-en="Since we do not collect personal data on our servers, there is no data retention period applicable to us." data-tr="Sunucularımızda kişisel veri toplamadığımız için bizim için geçerli bir veri saklama süresi yoktur.">Since we do not collect personal data on our servers, there is no data retention period applicable to us.</p>
+        <p data-en="<strong>Local Device Data:</strong>" data-tr="<strong>Yerel Cihaz Verileri:</strong>"><strong>Local Device Data:</strong></p>
+        <ul>
+            <li data-en="Game settings and progress are stored on your device until you clear app data or uninstall the app" data-tr="Oyun ayarları ve ilerleme, uygulama verilerini temizleyene veya uygulamayı kaldırana kadar cihazınızda saklanır">Game settings and progress are stored on your device until you clear app data or uninstall the app</li>
+            <li data-en="You have full control over this data through your device settings" data-tr="Cihaz ayarlarınız aracılığıyla bu veriler üzerinde tam kontrole sahipsiniz">You have full control over this data through your device settings</li>
+            <li data-en="Uninstalling the app removes all locally stored data" data-tr="Uygulamayı kaldırmak yerel olarak saklanan tüm verileri siler">Uninstalling the app removes all locally stored data</li>
+        </ul>
+
+        <h2 id="your-rights" data-en="10. Your Rights and Choices" data-tr="10. Haklarınız ve Seçenekleriniz">10. Your Rights and Choices</h2>
+        <p data-en="Depending on your location, you may have certain rights regarding your personal data. Since we do not collect personal data, most of these rights are automatically satisfied:" data-tr="Konumunuza bağlı olarak kişisel verilerinizle ilgili belirli haklara sahip olabilirsiniz. Kişisel veri toplamadığımız için bu hakların çoğu otomatik olarak karşılanmaktadır:">Depending on your location, you may have certain rights regarding your personal data. Since we do not collect personal data, most of these rights are automatically satisfied:</p>
+        
+        <h3 data-en="For All Users:" data-tr="Tüm Kullanıcılar İçin:">For All Users:</h3>
+        <ul>
+            <li data-en="<strong>Access:</strong> Since no personal data is collected, there is no personal data to access" data-tr="<strong>Erişim:</strong> Kişisel veri toplanmadığı için erişilecek kişisel veri yoktur"><strong>Access:</strong> Since no personal data is collected, there is no personal data to access</li>
+            <li data-en="<strong>Deletion:</strong> You can delete all local app data by clearing app data in your device settings or uninstalling the app" data-tr="<strong>Silme:</strong> Cihaz ayarlarınızda uygulama verilerini temizleyerek veya uygulamayı kaldırarak tüm yerel uygulama verilerini silebilirsiniz"><strong>Deletion:</strong> You can delete all local app data by clearing app data in your device settings or uninstalling the app</li>
+            <li data-en="<strong>Opt-out:</strong> No opt-out is necessary as we do not collect or process personal data" data-tr="<strong>Vazgeçme:</strong> Kişisel veri toplamadığımız veya işlemediğimiz için vazgeçme gerekli değildir"><strong>Opt-out:</strong> No opt-out is necessary as we do not collect or process personal data</li>
+        </ul>
+
+        <h3 data-en="For EEA/UK Users (GDPR Rights):" data-tr="AEA/İngiltere Kullanıcıları İçin (GDPR Hakları):">For EEA/UK Users (GDPR Rights):</h3>
+        <ul>
+            <li data-en="<strong>Right to Access:</strong> Not applicable - no personal data collected" data-tr="<strong>Erişim Hakkı:</strong> Geçerli değil - kişisel veri toplanmıyor"><strong>Right to Access:</strong> Not applicable - no personal data collected</li>
+            <li data-en="<strong>Right to Rectification:</strong> Not applicable - no personal data collected" data-tr="<strong>Düzeltme Hakkı:</strong> Geçerli değil - kişisel veri toplanmıyor"><strong>Right to Rectification:</strong> Not applicable - no personal data collected</li>
+            <li data-en="<strong>Right to Erasure:</strong> Delete local data via device settings" data-tr="<strong>Silme Hakkı:</strong> Cihaz ayarları aracılığıyla yerel verileri silin"><strong>Right to Erasure:</strong> Delete local data via device settings</li>
+            <li data-en="<strong>Right to Restrict Processing:</strong> Not applicable - no data processing occurs" data-tr="<strong>İşlemeyi Kısıtlama Hakkı:</strong> Geçerli değil - veri işleme gerçekleşmiyor"><strong>Right to Restrict Processing:</strong> Not applicable - no data processing occurs</li>
+            <li data-en="<strong>Right to Data Portability:</strong> Not applicable - no personal data collected" data-tr="<strong>Veri Taşınabilirliği Hakkı:</strong> Geçerli değil - kişisel veri toplanmıyor"><strong>Right to Data Portability:</strong> Not applicable - no personal data collected</li>
+            <li data-en="<strong>Right to Object:</strong> Not applicable - no data processing occurs" data-tr="<strong>İtiraz Hakkı:</strong> Geçerli değil - veri işleme gerçekleşmiyor"><strong>Right to Object:</strong> Not applicable - no data processing occurs</li>
+            <li data-en="<strong>Rights Related to Automated Decision-Making:</strong> Not applicable - no automated decisions are made" data-tr="<strong>Otomatik Karar Vermeyle İlgili Haklar:</strong> Geçerli değil - otomatik karar alınmıyor"><strong>Rights Related to Automated Decision-Making:</strong> Not applicable - no automated decisions are made</li>
+        </ul>
+
+        <h2 id="ccpa" data-en="11. California Privacy Rights (CCPA/CPRA)" data-tr="11. Kaliforniya Gizlilik Hakları (CCPA/CPRA)">11. California Privacy Rights (CCPA/CPRA)</h2>
+        <p data-en="If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):" data-tr="Kaliforniya'da ikamet ediyorsanız, Kaliforniya Tüketici Gizlilik Yasası (CCPA) ve Kaliforniya Gizlilik Hakları Yasası (CPRA) kapsamında belirli haklara sahipsiniz:">If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
+        
+        <div class="highlight-box">
+            <strong data-en="Do Not Sell or Share My Personal Information:" data-tr="Kişisel Bilgilerimi Satmayın veya Paylaşmayın:">Do Not Sell or Share My Personal Information:</strong>
+            <span data-en="We do not sell or share your personal information. We do not collect personal information that could be sold or shared with third parties." data-tr="Kişisel bilgilerinizi satmıyor veya paylaşmıyoruz. Üçüncü taraflarla satılabilecek veya paylaşılabilecek kişisel bilgi toplamıyoruz.">We do not sell or share your personal information. We do not collect personal information that could be sold or shared with third parties.</span>
+        </div>
+
+        <ul>
+            <li data-en="<strong>Right to Know:</strong> You have the right to know what personal information we collect. We collect no personal information." data-tr="<strong>Bilme Hakkı:</strong> Hangi kişisel bilgileri topladığımızı bilme hakkınız var. Kişisel bilgi toplamıyoruz."><strong>Right to Know:</strong> You have the right to know what personal information we collect. We collect no personal information.</li>
+            <li data-en="<strong>Right to Delete:</strong> You can delete local app data through your device settings." data-tr="<strong>Silme Hakkı:</strong> Cihaz ayarlarınız aracılığıyla yerel uygulama verilerini silebilirsiniz."><strong>Right to Delete:</strong> You can delete local app data through your device settings.</li>
+            <li data-en="<strong>Right to Opt-Out of Sale:</strong> We do not sell personal information." data-tr="<strong>Satıştan Vazgeçme Hakkı:</strong> Kişisel bilgi satmıyoruz."><strong>Right to Opt-Out of Sale:</strong> We do not sell personal information.</li>
+            <li data-en="<strong>Right to Non-Discrimination:</strong> We do not discriminate against users who exercise their privacy rights." data-tr="<strong>Ayrımcılık Yapılmama Hakkı:</strong> Gizlilik haklarını kullanan kullanıcılara karşı ayrımcılık yapmıyoruz."><strong>Right to Non-Discrimination:</strong> We do not discriminate against users who exercise their privacy rights.</li>
+            <li data-en="<strong>Right to Correct:</strong> Not applicable as we do not collect personal information." data-tr="<strong>Düzeltme Hakkı:</strong> Kişisel bilgi toplamadığımız için geçerli değil."><strong>Right to Correct:</strong> Not applicable as we do not collect personal information.</li>
+            <li data-en="<strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not collect sensitive personal information." data-tr="<strong>Hassas Kişisel Bilgilerin Kullanımını Sınırlama Hakkı:</strong> Hassas kişisel bilgi toplamıyoruz."><strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not collect sensitive personal information.</li>
+        </ul>
+        <p data-en="To exercise any of these rights, please <a href='#contact'>contact us</a>." data-tr="Bu haklardan herhangi birini kullanmak için lütfen <a href='#contact'>bizimle iletişime geçin</a>.">To exercise any of these rights, please <a href="#contact">contact us</a>.</p>
+
+        <h2 id="international" data-en="12. International Users" data-tr="12. Uluslararası Kullanıcılar">12. International Users</h2>
+        <p data-en="This app is available worldwide. Since we do not collect or transfer personal data, there are no cross-border data transfers to disclose." data-tr="Bu uygulama dünya çapında kullanılabilir. Kişisel veri toplamadığımız veya aktarmadığımız için açıklanacak sınır ötesi veri aktarımı yoktur.">This app is available worldwide. Since we do not collect or transfer personal data, there are no cross-border data transfers to disclose.</p>
+        <p data-en="Users from all regions, including the European Union, United Kingdom, Brazil, Canada, and other jurisdictions with data protection laws, can use the app with confidence that their personal data is not being collected or transferred." data-tr="Avrupa Birliği, Birleşik Krallık, Brezilya, Kanada ve veri koruma yasalarına sahip diğer yargı bölgeleri dahil tüm bölgelerden kullanıcılar, kişisel verilerinin toplanmadığı veya aktarılmadığı güvencesiyle uygulamayı kullanabilir.">Users from all regions, including the European Union, United Kingdom, Brazil, Canada, and other jurisdictions with data protection laws, can use the app with confidence that their personal data is not being collected or transferred.</p>
+
+        <h2 id="changes" data-en="13. Changes to This Privacy Policy" data-tr="13. Bu Gizlilik Politikasındaki Değişiklikler">13. Changes to This Privacy Policy</h2>
+        <p data-en="We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated &quot;Last updated&quot; date." data-tr="Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz. Değişiklikler, güncellenmiş &quot;Son güncelleme&quot; tarihi ile bu sayfaya yansıtılacaktır.">We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated "Last updated" date.</p>
+        <p data-en="If we make material changes that affect how we handle personal data, we will notify users through:" data-tr="Kişisel verileri nasıl işlediğimizi etkileyen önemli değişiklikler yaparsak, kullanıcıları şu yollarla bilgilendireceğiz:">If we make material changes that affect how we handle personal data, we will notify users through:</p>
+        <ul>
+            <li data-en="An update notice within the app" data-tr="Uygulama içinde bir güncelleme bildirimi">An update notice within the app</li>
+            <li data-en="Updated app store listing" data-tr="Güncellenmiş uygulama mağazası listesi">Updated app store listing</li>
+            <li data-en="This privacy policy page" data-tr="Bu gizlilik politikası sayfası">This privacy policy page</li>
+        </ul>
+        <p data-en="We encourage you to review this policy periodically." data-tr="Bu politikayı periyodik olarak gözden geçirmenizi öneririz.">We encourage you to review this policy periodically.</p>
+
+        <h2 id="contact" data-en="14. Contact Us" data-tr="14. Bize Ulaşın">14. Contact Us</h2>
+        <p data-en="If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:" data-tr="Bu Gizlilik Politikası veya gizlilik uygulamalarımızla ilgili herhangi bir sorunuz, endişeniz veya talebiniz varsa, lütfen bizimle iletişime geçin:">If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:</p>
+        <p>
+            <strong data-en="Developer:" data-tr="Geliştirici:">Developer:</strong> Ozel Alisen Berat<br>
+            <strong>Email:</strong> <a href="mailto:dev.ozelalisen@gmail.com">dev.ozelalisen@gmail.com</a><br>
+            <strong data-en="App:" data-tr="Uygulama:">App:</strong> <span data-en="Taboo Shh!" data-tr="Tabu Şşş!">Taboo Shh!</span>
+        </p>
+        <p data-en="We will respond to your inquiry within 30 days." data-tr="Sorgunuza 30 gün içinde yanıt vereceğiz.">We will respond to your inquiry within 30 days.</p>
+
+        <hr>
+        <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;" data-en="© 2026 Ozel Alisen Berat. All rights reserved. This privacy policy was last reviewed and updated on January 9, 2026." data-tr="© 2026 Ozel Alisen Berat. Tüm hakları saklıdır. Bu gizlilik politikası en son 9 Ocak 2026 tarihinde gözden geçirilmiş ve güncellenmiştir.">© 2026 Ozel Alisen Berat. All rights reserved. This privacy policy was last reviewed and updated on January 9, 2026.</p>
     </div>
 
-    <h2 id="how-we-use">2. How We Use Information</h2>
-    <p>Since we do not collect personal data, we do not use your information for any purpose. Local device storage is used solely to:</p>
-    <ul>
-        <li>Save your game preferences</li>
-        <li>Remember your settings between sessions</li>
-        <li>Restore your premium purchase status</li>
-    </ul>
+    <script>
+        let currentLang = 'en';
 
-    <h2 id="legal-basis">3. Legal Basis for Processing (GDPR)</h2>
-    <p>For users in the European Economic Area (EEA), United Kingdom, and Switzerland, we want to be transparent about our data practices:</p>
-    <ul>
-        <li><strong>No Personal Data Processing:</strong> Since we do not collect or process personal data, there is no legal basis required for data processing under GDPR.</li>
-        <li><strong>Local Storage Only:</strong> Data stored locally on your device for app functionality does not constitute personal data processing by us.</li>
-        <li><strong>In-App Purchases:</strong> Payment processing is handled entirely by Google Play or Apple App Store under their respective privacy policies and legal bases.</li>
-    </ul>
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            
+            // Update URL with language parameter for sharing
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
 
-    <h2 id="data-sharing">4. Data Sharing and Disclosure</h2>
-    <p>We do not share, sell, rent, or trade any user data with third parties because we do not collect any personal data.</p>
-    <p><strong>We do NOT:</strong></p>
-    <ul>
-        <li>Sell personal or sensitive user data</li>
-        <li>Share data with advertisers</li>
-        <li>Use data for targeted advertising</li>
-        <li>Transfer data to third-party analytics services</li>
-        <li>Share data with data brokers</li>
-    </ul>
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.dataset[lang];
+                if (text) {
+                    el.innerHTML = text;
+                }
+            });
 
-    <h2 id="in-app-purchases">5. In-App Purchases</h2>
-    <p>The app offers optional in-app purchases processed entirely by Google Play Store or Apple App Store. We do not have access to your payment information. All payment processing is handled securely by:</p>
-    <ul>
-        <li><strong>Google Play:</strong> Subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a></li>
-        <li><strong>Apple App Store:</strong> Subject to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a></li>
-    </ul>
-    <p>We encourage you to review these third-party privacy policies to understand how your payment information is handled.</p>
+            // Update page title
+            document.title = lang === 'tr' ? 'Gizlilik Politikası - Tabu Şşş!' : 'Privacy Policy - Taboo Shh!';
 
-    <h2 id="third-party">6. Third-Party Services</h2>
-    <p>The app does not integrate with:</p>
-    <ul>
-        <li>Third-party analytics services (e.g., Google Analytics, Firebase Analytics)</li>
-        <li>Advertising networks or SDKs</li>
-        <li>Social media tracking or login</li>
-        <li>Crash reporting services that collect personal data</li>
-        <li>Any external APIs that process user data</li>
-    </ul>
+            localStorage.setItem('taboo-lang', lang);
+        }
 
-    <h2 id="children">7. Children's Privacy (COPPA)</h2>
-    <p>Our app is safe for users of all ages, including children under 13 years of age. We comply with:</p>
-    <ul>
-        <li>Children's Online Privacy Protection Act (COPPA) - United States</li>
-        <li>General Data Protection Regulation (GDPR) provisions for children - European Union</li>
-        <li>Similar child protection regulations worldwide</li>
-    </ul>
-    <p>Since we do not collect any personal information from any users, we do not collect personal information from children. Parents and guardians can allow their children to use the app without concern for data collection.</p>
-    <p>If you are a parent or guardian and believe we have inadvertently collected information about your child, please <a href="#contact">contact us</a> immediately.</p>
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        });
 
-    <h2 id="security">8. Data Security</h2>
-    <p>Although we do not collect personal data, we take security seriously:</p>
-    <ul>
-        <li>The app does not require internet connectivity for core gameplay</li>
-        <li>No data is transmitted to external servers</li>
-        <li>Local data is stored using standard device security measures provided by iOS and Android</li>
-        <li>The app does not request unnecessary permissions</li>
-    </ul>
-
-    <h2 id="retention">9. Data Retention</h2>
-    <p>Since we do not collect personal data on our servers, there is no data retention period applicable to us.</p>
-    <p><strong>Local Device Data:</strong></p>
-    <ul>
-        <li>Game settings and progress are stored on your device until you clear app data or uninstall the app</li>
-        <li>You have full control over this data through your device settings</li>
-        <li>Uninstalling the app removes all locally stored data</li>
-    </ul>
-
-    <h2 id="your-rights">10. Your Rights and Choices</h2>
-    <p>Depending on your location, you may have certain rights regarding your personal data. Since we do not collect personal data, most of these rights are automatically satisfied:</p>
-    
-    <h3>For All Users:</h3>
-    <ul>
-        <li><strong>Access:</strong> Since no personal data is collected, there is no personal data to access</li>
-        <li><strong>Deletion:</strong> You can delete all local app data by clearing app data in your device settings or uninstalling the app</li>
-        <li><strong>Opt-out:</strong> No opt-out is necessary as we do not collect or process personal data</li>
-    </ul>
-
-    <h3>For EEA/UK Users (GDPR Rights):</h3>
-    <ul>
-        <li><strong>Right to Access:</strong> Not applicable - no personal data collected</li>
-        <li><strong>Right to Rectification:</strong> Not applicable - no personal data collected</li>
-        <li><strong>Right to Erasure:</strong> Delete local data via device settings</li>
-        <li><strong>Right to Restrict Processing:</strong> Not applicable - no data processing occurs</li>
-        <li><strong>Right to Data Portability:</strong> Not applicable - no personal data collected</li>
-        <li><strong>Right to Object:</strong> Not applicable - no data processing occurs</li>
-        <li><strong>Rights Related to Automated Decision-Making:</strong> Not applicable - no automated decisions are made</li>
-    </ul>
-
-    <h2 id="ccpa">11. California Privacy Rights (CCPA/CPRA)</h2>
-    <p>If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA):</p>
-    
-    <div class="highlight-box">
-        <strong>Do Not Sell or Share My Personal Information:</strong> We do not sell or share your personal information. We do not collect personal information that could be sold or shared with third parties.
-    </div>
-
-    <ul>
-        <li><strong>Right to Know:</strong> You have the right to know what personal information we collect. We collect no personal information.</li>
-        <li><strong>Right to Delete:</strong> You can delete local app data through your device settings.</li>
-        <li><strong>Right to Opt-Out of Sale:</strong> We do not sell personal information.</li>
-        <li><strong>Right to Non-Discrimination:</strong> We do not discriminate against users who exercise their privacy rights.</li>
-        <li><strong>Right to Correct:</strong> Not applicable as we do not collect personal information.</li>
-        <li><strong>Right to Limit Use of Sensitive Personal Information:</strong> We do not collect sensitive personal information.</li>
-    </ul>
-
-    <p>To exercise any of these rights, please <a href="#contact">contact us</a>.</p>
-
-    <h2 id="international">12. International Users</h2>
-    <p>This app is available worldwide. Since we do not collect or transfer personal data, there are no cross-border data transfers to disclose.</p>
-    <p>Users from all regions, including the European Union, United Kingdom, Brazil, Canada, and other jurisdictions with data protection laws, can use the app with confidence that their personal data is not being collected or transferred.</p>
-
-    <h2 id="changes">13. Changes to This Privacy Policy</h2>
-    <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated "Last updated" date.</p>
-    <p>If we make material changes that affect how we handle personal data, we will notify users through:</p>
-    <ul>
-        <li>An update notice within the app</li>
-        <li>Updated app store listing</li>
-        <li>This privacy policy page</li>
-    </ul>
-    <p>We encourage you to review this policy periodically.</p>
-
-    <h2 id="contact">14. Contact Us</h2>
-    <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us at:</p>
-    <p>
-        <strong>Developer:</strong> Ozel Alisen Berat<br>
-        <strong>Email:</strong> <a href="mailto:dev.ozelalisen@gmail.com">dev.ozelalisen@gmail.com</a><br>
-        <strong>App:</strong> Taboo Shh!
-    </p>
-    <p>We will respond to your inquiry within 30 days.</p>
-
-    <hr>
-    <p><small>© 2026 Ozel Alisen Berat. All rights reserved. This privacy policy was last reviewed and updated on January 9, 2026.</small></p>
+        // Check URL parameter first, then localStorage, then default to 'en'
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        const savedLang = localStorage.getItem('taboo-lang');
+        
+        if (urlLang && (urlLang === 'en' || urlLang === 'tr')) {
+            setLanguage(urlLang);
+        } else if (savedLang && (savedLang === 'en' || savedLang === 'tr')) {
+            setLanguage(savedLang);
+        }
+    </script>
 </body>
 </html>
