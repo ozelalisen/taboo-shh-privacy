@@ -413,6 +413,10 @@
         @media (max-width: 968px) {
             .nav { padding: 20px 30px; }
             .nav-links { display: none; }
+            .nav-right { gap: 10px; }
+            .nav-cta { padding: 10px 20px; font-size: 0.9rem; }
+            .lang-switcher { padding: 4px; }
+            .lang-btn { padding: 5px 10px; font-size: 0.8rem; }
             .hero { padding: 100px 30px 60px; }
             .hero-content { grid-template-columns: 1fr; text-align: center; }
             .hero-text h1 { font-size: 2.5rem; }
@@ -432,6 +436,38 @@
             .features-list { grid-template-columns: 1fr; }
             .download-content { grid-template-columns: 1fr; text-align: center; }
             .how-it-works, .features, .download, .support { padding: 60px 30px; }
+            .footer { padding: 40px 20px; }
+            .footer-links { flex-wrap: wrap; gap: 20px; }
+        }
+        @media (max-width: 480px) {
+            .nav { padding: 15px 20px; }
+            .nav-logo span { display: none; }
+            .nav-cta { padding: 8px 16px; font-size: 0.85rem; }
+            .lang-btn { padding: 4px 8px; font-size: 0.75rem; }
+            .hero { padding: 90px 20px 40px; min-height: auto; }
+            .hero-text h1 { font-size: 1.8rem; }
+            .hero-text p { font-size: 0.95rem; }
+            .store-buttons { flex-direction: column; align-items: center; }
+            .store-btn { width: 100%; max-width: 280px; justify-content: center; }
+            .hero-image { min-height: 350px; }
+            .hero-circle { width: 220px; height: 220px; }
+            .phone-mockup img { width: 200px; }
+            .floating-cards-container { width: 280px; height: 280px; }
+            .floating-card { font-size: 0.7rem; padding: 8px 12px; }
+            .floating-card.card-1 { top: -10px; right: 10px; }
+            .floating-card.card-2 { right: -5px; }
+            .floating-card.card-3 { left: -5px; }
+            .floating-card.card-4 { bottom: -10px; left: 10px; }
+            .section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 0.9rem; }
+            .how-it-works, .features, .download, .support { padding: 40px 20px; }
+            .how-phone img { width: 200px; }
+            .how-circle { width: 250px; height: 250px; }
+            .feature-card { padding: 20px; }
+            .download-text h2 { font-size: 1.8rem; }
+            .download-image img { width: 180px; }
+            .support h2 { font-size: 1.5rem; }
+            .footer-links { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -472,22 +508,22 @@
                             <span>App Store</span>
                         </div>
                     </a>
-                    <div class="store-btn coming-soon">
+                    <a href="https://play.google.com/store/apps/details?id=com.shhgames.wordparty" target="_blank" class="store-btn">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
                         <div class="store-text">
-                            <small data-en="Coming Soon" data-tr="Çok Yakında" data-de="Demnächst">Coming Soon</small>
+                            <small data-en="Get it on" data-tr="İndir" data-de="Jetzt bei">Get it on</small>
                             <span>Google Play</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
                 <div class="hero-circle"></div>
                 <div class="phone-mockup"><img src="icon.png" alt="Taboo Shh! App"></div>
                 <div class="floating-cards-container">
-                    <div class="floating-card card-1" data-en="7 Categories" data-tr="7 Kategori" data-de="7 Kategorien">7 Categories</div>
+                    <div class="floating-card card-1" data-en="12 Decks" data-tr="12 Deste" data-de="12 Decks">12 Decks</div>
                     <div class="floating-card card-2" data-en="3 Languages" data-tr="3 Dil" data-de="3 Sprachen">3 Languages</div>
-                    <div class="floating-card card-3" data-en="500+ Cards" data-tr="500+ Kart" data-de="500+ Karten">500+ Cards</div>
+                    <div class="floating-card card-3" data-en="1000+ Cards" data-tr="1000+ Kart" data-de="1000+ Karten">1000+ Cards</div>
                     <div class="floating-card card-4" data-en="Works Offline" data-tr="Çevrimdışı Çalışır" data-de="Offline spielbar">Works Offline</div>
                 </div>
             </div>
