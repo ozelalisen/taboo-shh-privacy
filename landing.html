@@ -3,471 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taboo Shh! - The Ultimate Word Guessing Party Game</title>
-    <meta name="description" content="Taboo Shh! is the ultimate word-guessing party game for iOS and Android. Challenge your friends and family!">
+    <title>Shh! - The Ultimate Word Guessing Party Game</title>
+    <meta name="description" content="Shh! is the ultimate word-guessing party game for iOS and Android. Challenge your friends and family!">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <meta name="keywords" content="taboo game, word guessing, party game, iOS game, family game, tabu spiel, kelime oyunu, wortspiel, tahmin oyunu">
     
-    <!-- Canonical & Language Alternates -->
     <link rel="canonical" href="https://ozelalisen.github.io/taboo-shh-privacy/landing.html" />
     <link rel="alternate" hreflang="en" href="https://ozelalisen.github.io/taboo-shh-privacy/landing.html?lang=en" />
     <link rel="alternate" hreflang="de" href="https://ozelalisen.github.io/taboo-shh-privacy/landing.html?lang=de" />
     <link rel="alternate" hreflang="tr" href="https://ozelalisen.github.io/taboo-shh-privacy/landing.html?lang=tr" />
     <link rel="alternate" hreflang="x-default" href="https://ozelalisen.github.io/taboo-shh-privacy/landing.html" />
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ozelalisen.github.io/taboo-shh-privacy/landing.html">
-    <meta property="og:title" content="Taboo Shh! - The Ultimate Word Guessing Party Game">
-    <meta property="og:description" content="Challenge friends, skip taboo words, score big. The ultimate party game available for iOS.">
+    <meta property="og:title" content="Shh! - The Ultimate Word Guessing Party Game">
+    <meta property="og:description" content="Challenge friends, skip forbidden words, score big. The ultimate party game available for iOS.">
     <meta property="og:image" content="https://ozelalisen.github.io/taboo-shh-privacy/icon.png">
-    
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://ozelalisen.github.io/taboo-shh-privacy/landing.html">
-    <meta name="twitter:title" content="Taboo Shh! - The Ultimate Word Guessing Party Game">
-    <meta name="twitter:description" content="Challenge friends, skip taboo words, score big. The ultimate party game available for iOS.">
+    <meta name="twitter:title" content="Shh! - The Ultimate Word Guessing Party Game">
+    <meta name="twitter:description" content="Challenge friends, skip forbidden words, score big. The ultimate party game available for iOS.">
     <meta name="twitter:image" content="https://ozelalisen.github.io/taboo-shh-privacy/icon.png">
     
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "MobileApplication",
-        "name": "Taboo Shh!",
-        "operatingSystem": "iOS",
+        "name": "Shh!",
+        "operatingSystem": "iOS, Android",
         "applicationCategory": "GameApplication",
-        "description": "The ultimate word-guessing party game. Challenge friends, skip taboo words, and score big!",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Ozel Alisen Berat"
-        }
+        "description": "The ultimate word-guessing party game. Challenge friends, skip forbidden words, and score big!",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@type": "Person", "name": "Ozel Alisen Berat" }
     }
     </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #0A1628;
-            --bg-secondary: #132337;
-            --bg-card: #1E3A5F;
-            --primary: #00D4AA;
-            --primary-light: #00F5C4;
-            --accent: #00B4D8;
-            --text-primary: #FFFFFF;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
+            --bg-primary: #0B0D11;
+            --bg-secondary: #12151C;
+            --bg-card: #181C27;
+            --primary: #6366F1;
+            --primary-light: #818CF8;
+            --primary-dark: #4F46E5;
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --text-primary: #E8ECF4;
+            --text-secondary: #8B95A8;
+            --text-muted: #4B5568;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(99, 102, 241, 0.3);
+            --radius: 16px;
         }
+
+        /* ── Base ─────────────────────────────────── */
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', system-ui, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background: var(--bg-primary);
+            overflow-x: hidden;
         }
+        ::selection { background: var(--primary); color: white; }
+
+        /* ── Noise texture overlay ────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px;
+        }
+
+        /* ── Scroll reveal animation ─────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ── Navigation ──────────────────────────── */
         .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            z-index: 100;
+            background: rgba(11, 13, 17, 0.7);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border-bottom: 1px solid var(--border);
         }
         .nav-logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: 700;
-            font-size: 1.3rem;
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
             color: var(--text-primary);
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
-        .nav-logo img { width: 40px; height: 40px; border-radius: 10px; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-logo img { width: 36px; height: 36px; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a {
             text-decoration: none;
             color: var(--text-secondary);
+            font-size: 0.875rem;
             font-weight: 500;
-            font-size: 0.95rem;
             transition: color 0.3s;
         }
-        .nav-links a:hover { color: var(--primary); }
-
-        .nav-right { display: flex; align-items: center; gap: 20px; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
         .lang-switcher {
             display: flex;
-            gap: 8px;
-            background: var(--bg-card);
-            padding: 6px;
-            border-radius: 20px;
+            gap: 2px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
         .lang-btn {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border: none;
             background: transparent;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
             cursor: pointer;
-            border-radius: 15px;
+            border-radius: 7px;
             transition: all 0.3s;
             font-family: inherit;
+            letter-spacing: 0.05em;
         }
         .lang-btn.active {
             background: var(--primary);
-            color: var(--bg-primary);
+            color: white;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.4);
         }
         .nav-cta {
             background: var(--primary);
-            color: var(--bg-primary);
-            padding: 12px 28px;
-            border-radius: 30px;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.875rem;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.3);
         }
         .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 212, 170, 0.4);
-        }
-        .hero {
-            min-height: 100vh;
-            background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            padding: 120px 60px 60px;
-        }
-        .hero-bg-pattern {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(circle at 70% 30%, rgba(0, 212, 170, 0.1) 0%, transparent 50%);
-        }
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
         }
 
-        .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
+        /* ── Hero ────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Animated gradient orbs */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) scale(1.15); opacity: 0.7; }
+        }
+        .hero-inner {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.825rem;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-bottom: 32px;
+        }
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .hero-logo {
+            display: block;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
             color: var(--text-primary);
         }
-        .hero-text h1 span { color: var(--primary); font-style: italic; }
-        .hero-text p {
+        .hero h1 em {
+            color: var(--primary-light);
+            font-style: italic;
+        }
+        .hero-sub {
             font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 30px;
-            max-width: 450px;
+            max-width: 520px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
         }
-        .store-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
         .store-btn {
             display: inline-flex;
             align-items: center;
             gap: 12px;
             background: var(--bg-card);
-            color: white;
-            padding: 14px 24px;
-            border-radius: 12px;
+            color: var(--text-primary);
+            padding: 14px 28px;
+            border-radius: 14px;
             text-decoration: none;
-            border: 1px solid rgba(0, 212, 170, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .store-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.2);
-            border-color: var(--primary);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
         }
-        .store-btn.coming-soon {
-            opacity: 0.7;
-            cursor: default;
-        }
-        .store-btn.coming-soon:hover {
-            transform: none;
-            box-shadow: none;
-            border-color: rgba(0, 212, 170, 0.3);
-        }
-        .coming-soon-btn {
-            opacity: 0.7;
-            cursor: default;
-        }
-        .coming-soon-btn:hover {
-            transform: none;
-            box-shadow: none;
-        }
-        .store-btn svg { width: 28px; height: 28px; }
-        .store-btn .store-text { text-align: left; }
-        .store-btn .store-text small { display: block; font-size: 11px; color: var(--text-secondary); }
-        .store-btn .store-text span { font-size: 16px; font-weight: 600; }
-        .hero-image { position: relative; display: flex; justify-content: center; align-items: center; min-height: 500px; }
-        .phone-mockup { position: relative; z-index: 2; }
-        .phone-mockup img {
-            width: 280px;
-            border-radius: 36px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        }
-        .hero-circle {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            opacity: 0.9;
-        }
-        .floating-cards-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            z-index: 3;
-        }
-        .floating-card {
-            position: absolute;
-            background: var(--bg-card);
-            padding: 12px 18px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(0, 212, 170, 0.2);
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-        .floating-card.card-1 { top: 0; right: 20px; }
-        .floating-card.card-2 { top: 25%; right: -30px; }
-        .floating-card.card-3 { bottom: 25%; left: -30px; }
-        .floating-card.card-4 { bottom: 0; left: 20px; }
+        .store-btn svg { width: 26px; height: 26px; flex-shrink: 0; }
+        .store-text { text-align: left; }
+        .store-text small { display: block; font-size: 0.7rem; color: var(--text-muted); font-weight: 500; }
+        .store-text span { font-size: 1rem; font-weight: 600; }
 
-        .how-it-works {
-            padding: 100px 60px;
-            text-align: center;
-            background: var(--bg-secondary);
-        }
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-        }
-        .section-subtitle {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 60px;
-        }
-        .how-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-            align-items: start;
-        }
-        .how-features { display: flex; flex-direction: column; gap: 40px; }
-        .feature-item { text-align: left; display: flex; gap: 15px; }
-        .feature-item.right { text-align: right; flex-direction: row-reverse; }
-        .feature-number {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: var(--bg-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .feature-item h4 { font-size: 1.1rem; margin-bottom: 5px; color: var(--text-primary); }
-        .feature-item p { font-size: 0.9rem; color: var(--text-secondary); }
-        .how-phone { position: relative; display: flex; justify-content: center; align-items: center; }
-        .how-phone img {
-            width: 260px;
-            border-radius: 32px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        /* ── Stats ribbon ────────────────────────── */
+        .stats {
+            padding: 0 40px;
             position: relative;
             z-index: 2;
         }
-        .how-circle {
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .features { padding: 100px 60px; background: var(--bg-primary); }
-        .features-content {
-            max-width: 1100px;
+        .stats-inner {
+            max-width: 800px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
         }
-        .features-image { position: relative; }
-        .features-image img { width: 100%; max-width: 350px; border-radius: 20px; }
-        .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .feature-card {
+        .stat {
+            background: var(--bg-secondary);
+            padding: 28px 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* ── Section common ──────────────────────── */
+        section { padding: 120px 40px; }
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            color: var(--text-secondary);
+            max-width: 540px;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ── How it works ────────────────────────── */
+        .how { background: var(--bg-secondary); }
+        .how-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .how-header { text-align: center; margin-bottom: 72px; }
+        .how-header .section-sub { margin: 0 auto; }
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .step {
+            position: relative;
+            padding: 32px 24px;
             background: var(--bg-card);
-            padding: 25px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 212, 170, 0.1);
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .feature-card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 212, 170, 0.15);
+        .step:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+        }
+        .step-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            color: rgba(99, 102, 241, 0.15);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .step h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .step p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── Features ────────────────────────────── */
+        .features-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .features-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .features-header .section-sub { margin: 0 auto; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .feature-card {
+            padding: 28px 24px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+        }
+        .feature-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-glow);
             border-radius: 12px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: var(--primary);
-            font-weight: 700;
+            margin-bottom: 16px;
         }
-        .feature-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--text-primary); }
-        .feature-card p { font-size: 0.85rem; color: var(--text-secondary); }
-        .download {
-            padding: 80px 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-light);
+        }
+        .feature-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary); }
+        .feature-card p { font-size: 0.825rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* ── CTA / Download ──────────────────────── */
+        .cta {
+            padding: 100px 40px;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .download-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
         }
-        .download-text h2 { font-size: 2.5rem; font-weight: 700; color: var(--bg-primary); margin-bottom: 15px; }
-        .download-text p { color: rgba(10, 22, 40, 0.8); margin-bottom: 30px; }
-        .download-btn {
-            display: inline-block;
-            background: var(--bg-primary);
-            color: var(--primary);
-            padding: 15px 35px;
-            border-radius: 30px;
+        .cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .cta-inner .hero-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 32px;
+        }
+        .cta h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+            margin-bottom: 16px;
+        }
+        .cta p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 36px;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
         }
-        .download-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .download-image { display: flex; justify-content: center; }
-        .download-image img { width: 250px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.5);
+        }
 
-        .support { padding: 80px 60px; background: var(--bg-secondary); text-align: center; }
-        .support h2 { font-size: 2rem; margin-bottom: 15px; color: var(--text-primary); }
-        .support p { color: var(--text-secondary); margin-bottom: 25px; }
+        /* ── Support ─────────────────────────────── */
+        .support {
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        .support h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        .support p { color: var(--text-secondary); margin-bottom: 24px; }
         .support-btn {
             display: inline-block;
-            background: var(--primary);
-            color: var(--bg-primary);
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
+            color: var(--primary-light);
             font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            padding: 12px 28px;
+            border: 1px solid var(--border-hover);
+            border-radius: 10px;
+            transition: all 0.3s;
         }
-        .support-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4); }
+        .support-btn:hover {
+            background: var(--primary-glow);
+        }
+
+        /* ── Footer ──────────────────────────────── */
         .footer {
-            background: var(--bg-primary);
-            color: white;
-            padding: 60px;
+            padding: 40px;
             text-align: center;
-            border-top: 1px solid rgba(0, 212, 170, 0.1);
+            border-top: 1px solid var(--border);
         }
-        .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--primary); }
-        .footer-copy { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--text-secondary); }
+        .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
+
+        /* ── Responsive ──────────────────────────── */
         @media (max-width: 968px) {
-            .nav { padding: 20px 30px; }
+            .nav { padding: 14px 24px; }
             .nav-links { display: none; }
-            .nav-right { gap: 10px; }
-            .nav-cta { padding: 10px 20px; font-size: 0.9rem; }
-            .lang-switcher { padding: 4px; }
-            .lang-btn { padding: 5px 10px; font-size: 0.8rem; }
-            .hero { padding: 100px 30px 60px; }
-            .hero-content { grid-template-columns: 1fr; text-align: center; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero-text p { margin: 0 auto 30px; }
-            .store-buttons { justify-content: center; }
-            .hero-circle { width: 300px; height: 300px; }
-            .floating-cards-container { width: 350px; height: 350px; }
-            .floating-card { font-size: 0.8rem; padding: 10px 14px; }
-            .floating-card.card-2 { right: -10px; }
-            .floating-card.card-3 { left: -10px; }
-            .how-content { grid-template-columns: 1fr; }
-            .how-features { order: 2; }
-            .how-phone { order: 1; }
-            .feature-item, .feature-item.right { text-align: left; flex-direction: row; }
-            .features-content { grid-template-columns: 1fr; }
-            .features-image { display: flex; justify-content: center; }
-            .features-list { grid-template-columns: 1fr; }
-            .download-content { grid-template-columns: 1fr; text-align: center; }
-            .how-it-works, .features, .download, .support { padding: 60px 30px; }
-            .footer { padding: 40px 20px; }
-            .footer-links { flex-wrap: wrap; gap: 20px; }
+            section { padding: 80px 24px; }
+            .hero { padding: 120px 24px 60px; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .how-steps { grid-template-columns: 1fr 1fr; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-            .nav { padding: 15px 20px; }
+            .nav { padding: 12px 16px; }
             .nav-logo span { display: none; }
-            .nav-cta { padding: 8px 16px; font-size: 0.85rem; }
+            .nav-cta { padding: 8px 16px; font-size: 0.8rem; }
             .lang-btn { padding: 4px 8px; font-size: 0.75rem; }
-            .hero { padding: 90px 20px 40px; min-height: auto; }
-            .hero-text h1 { font-size: 1.8rem; }
-            .hero-text p { font-size: 0.95rem; }
-            .store-buttons { flex-direction: column; align-items: center; }
-            .store-btn { width: 100%; max-width: 280px; justify-content: center; }
-            .hero-image { min-height: 350px; }
-            .hero-circle { width: 220px; height: 220px; }
-            .phone-mockup img { width: 200px; }
-            .floating-cards-container { width: 280px; height: 280px; }
-            .floating-card { font-size: 0.7rem; padding: 8px 12px; }
-            .floating-card.card-1 { top: -10px; right: 10px; }
-            .floating-card.card-2 { right: -5px; }
-            .floating-card.card-3 { left: -5px; }
-            .floating-card.card-4 { bottom: -10px; left: 10px; }
-            .section-title { font-size: 1.8rem; }
-            .section-subtitle { font-size: 0.9rem; }
-            .how-it-works, .features, .download, .support { padding: 40px 20px; }
-            .how-phone img { width: 200px; }
-            .how-circle { width: 250px; height: 250px; }
-            .feature-card { padding: 20px; }
-            .download-text h2 { font-size: 1.8rem; }
-            .download-image img { width: 180px; }
-            .support h2 { font-size: 1.5rem; }
-            .footer-links { flex-direction: column; gap: 15px; }
+            section { padding: 60px 16px; }
+            .hero { padding: 100px 16px 40px; min-height: auto; }
+            .hero-logo { width: 88px; height: 88px; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .how-steps { grid-template-columns: 1fr; }
+            .store-btn { width: 100%; justify-content: center; }
+            .feature-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -475,12 +575,12 @@
 
     <nav class="nav">
         <a href="#" class="nav-logo">
-            <img src="icon.png" alt="Taboo Shh!">
-            <span data-en="Taboo Shh!" data-tr="Tabu Şşş!" data-de="Tabu Psst!">Taboo Shh!</span>
+            <img src="icon-transparent.png" alt="Shh!">
+            <span>Shh!</span>
         </a>
         <ul class="nav-links">
-            <li><a href="#features" data-en="Features" data-tr="Özellikler" data-de="Funktionen">Features</a></li>
             <li><a href="#how-it-works" data-en="How It Works" data-tr="Nasıl Oynanır" data-de="So funktioniert's">How It Works</a></li>
+            <li><a href="#features" data-en="Features" data-tr="Özellikler" data-de="Funktionen">Features</a></li>
             <li><a href="#support" data-en="Support" data-tr="Destek" data-de="Support">Support</a></li>
             <li><a href="index.html" data-en="Privacy" data-tr="Gizlilik" data-de="Datenschutz">Privacy</a></li>
         </ul>
@@ -494,131 +594,148 @@
         </div>
     </nav>
 
+    <!-- ════ HERO ════ -->
     <section class="hero">
-        <div class="hero-bg-pattern"></div>
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 data-en="Your Party Game,<br><span>Just a Tap Away</span>" data-tr="Parti Oyununuz,<br><span>Bir Dokunuşla</span>" data-de="Dein Partyspiel,<br><span>Nur einen Tipp entfernt</span>">Your Party Game,<br><span>Just a Tap Away</span></h1>
-                <p data-en="Experience the ultimate word-guessing fun with Taboo Shh! Challenge friends, skip the taboo words, and score big. Available in English, German, and Turkish." data-tr="Tabu Şşş! ile kelime tahmin eğlencesinin zirvesini yaşayın! Arkadaşlarınıza meydan okuyun, tabu kelimeleri atlayın ve büyük puanlar kazanın. İngilizce, Almanca ve Türkçe olarak mevcut." data-de="Erlebe den ultimativen Wortratespaß mit Tabu Psst! Fordere Freunde heraus, vermeide die Tabu-Wörter und sammle Punkte. Verfügbar auf Englisch, Deutsch und Türkisch.">Experience the ultimate word-guessing fun with Taboo Shh! Challenge friends, skip the taboo words, and score big. Available in English, German, and Turkish.</p>
-                <div class="store-buttons">
-                    <a href="https://apps.apple.com/us/app/taboo-shh/id6757612362" target="_blank" class="store-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-                        <div class="store-text">
-                            <small data-en="Download on the" data-tr="İndir" data-de="Laden im">Download on the</small>
-                            <span>App Store</span>
-                        </div>
-                    </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.shhgames.wordparty" target="_blank" class="store-btn">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
-                        <div class="store-text">
-                            <small data-en="Get it on" data-tr="İndir" data-de="Jetzt bei">Get it on</small>
-                            <span>Google Play</span>
-                        </div>
-                    </a>
-                </div>
+        <div class="hero-inner">
+            <div class="hero-badge reveal">
+                <span class="hero-badge-dot"></span>
+                <span data-en="Free — No ads, no accounts, no data collection" data-tr="Ücretsiz — Reklam yok, hesap yok, veri toplama yok" data-de="Kostenlos — Keine Werbung, keine Konten, keine Datenerfassung">Free — No ads, no accounts, no data collection</span>
             </div>
-            <div class="hero-image">
-                <div class="hero-circle"></div>
-                <div class="phone-mockup"><img src="icon.png" alt="Taboo Shh! App"></div>
-                <div class="floating-cards-container">
-                    <div class="floating-card card-1" data-en="12 Decks" data-tr="12 Deste" data-de="12 Decks">12 Decks</div>
-                    <div class="floating-card card-2" data-en="3 Languages" data-tr="3 Dil" data-de="3 Sprachen">3 Languages</div>
-                    <div class="floating-card card-3" data-en="1000+ Cards" data-tr="1000+ Kart" data-de="1000+ Karten">1000+ Cards</div>
-                    <div class="floating-card card-4" data-en="Works Offline" data-tr="Çevrimdışı Çalışır" data-de="Offline spielbar">Works Offline</div>
+            <img src="icon-transparent.png" alt="Shh! Logo" class="hero-logo reveal reveal-delay-1">
+            <h1 class="reveal reveal-delay-2" data-en="The party game<br>that brings everyone<br><em>closer</em>" data-tr="Herkesi birbirine<br><em>yakınlaştıran</em><br>parti oyunu" data-de="Das Partyspiel,<br>das alle<br><em>zusammenbringt</em>">The party game<br>that brings everyone<br><em>closer</em></h1>
+            <p class="hero-sub reveal reveal-delay-3" data-en="Grab your friends, pick a deck, and start describing — but watch out for the forbidden words. Shh! turns any gathering into an unforgettable game night." data-tr="Arkadaşlarını topla, bir deste seç ve anlatmaya başla — ama yasak kelimelere dikkat et. Shh! her buluşmayı unutulmaz bir oyun gecesine dönüştürür." data-de="Schnapp dir deine Freunde, wähle ein Deck und fang an zu beschreiben — aber Vorsicht vor den verbotenen Wörtern. Shh! macht jedes Treffen zum unvergesslichen Spieleabend.">Grab your friends, pick a deck, and start describing — but watch out for the forbidden words. Shh! turns any gathering into an unforgettable game night.</p>
+            <div class="hero-actions reveal reveal-delay-4">
+                <a href="https://apps.apple.com/us/app/taboo-shh/id6757612362" target="_blank" class="store-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                    <div class="store-text">
+                        <small data-en="Download on the" data-tr="İndir" data-de="Laden im">Download on the</small>
+                        <span>App Store</span>
+                    </div>
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.shhgames.wordparty" target="_blank" class="store-btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg>
+                    <div class="store-text">
+                        <small data-en="Get it on" data-tr="İndir" data-de="Jetzt bei">Get it on</small>
+                        <span>Google Play</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════ STATS ════ -->
+    <div class="stats reveal">
+        <div class="stats-inner">
+            <div class="stat">
+                <div class="stat-number" data-en="1000+" data-tr="1000+" data-de="1000+">1000+</div>
+                <div class="stat-label" data-en="Unique Cards" data-tr="Benzersiz Kart" data-de="Einzigartige Karten">Unique Cards</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-en="12" data-tr="12" data-de="12">12</div>
+                <div class="stat-label" data-en="Themed Decks" data-tr="Temalı Deste" data-de="Themendecks">Themed Decks</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-en="3" data-tr="3" data-de="3">3</div>
+                <div class="stat-label" data-en="Languages" data-tr="Dil" data-de="Sprachen">Languages</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number" data-en="0" data-tr="0" data-de="0">0</div>
+                <div class="stat-label" data-en="Data Collected" data-tr="Toplanan Veri" data-de="Erfasste Daten">Data Collected</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ════ HOW IT WORKS ════ -->
+    <section class="how" id="how-it-works">
+        <div class="how-inner">
+            <div class="how-header">
+                <span class="section-tag reveal" data-en="How it works" data-tr="Nasıl oynanır" data-de="So funktioniert's">How it works</span>
+                <h2 class="section-title reveal" data-en="Learn in 30 seconds,<br>play for hours" data-tr="30 saniyede öğren,<br>saatlerce oyna" data-de="In 30 Sekunden lernen,<br>stundenlang spielen">Learn in 30 seconds,<br>play for hours</h2>
+                <p class="section-sub reveal" data-en="No rulebook needed. Split into teams, grab your phone, and you're ready. Here's all there is to it:" data-tr="Kural kitabı gerekmez. Takımlara ayrılın, telefonunuzu alın ve hazırsınız. Yapmanız gereken tek şey:" data-de="Kein Regelbuch nötig. Teilt euch in Teams, schnappt euer Handy und los geht's:">No rulebook needed. Split into teams, grab your phone, and you're ready. Here's all there is to it:</p>
+            </div>
+            <div class="how-steps">
+                <div class="step reveal">
+                    <div class="step-num">01</div>
+                    <h4 data-en="Draw a Card" data-tr="Kart Çek" data-de="Karte ziehen">Draw a Card</h4>
+                    <p data-en="A secret word appears on screen — along with five forbidden clues you absolutely cannot say." data-tr="Ekranda gizli bir kelime belirir — kesinlikle söyleyemeyeceğiniz beş yasak ipucuyla birlikte." data-de="Ein geheimes Wort erscheint — zusammen mit fünf verbotenen Hinweisen, die du auf keinen Fall sagen darfst.">A secret word appears on screen — along with five forbidden clues you absolutely cannot say.</p>
+                </div>
+                <div class="step reveal reveal-delay-1">
+                    <div class="step-num">02</div>
+                    <h4 data-en="Get Creative" data-tr="Yaratıcı Ol" data-de="Sei kreativ">Get Creative</h4>
+                    <p data-en="Describe, act, hint — do whatever it takes to get your team to guess. Just don't say the forbidden words!" data-tr="Anlat, rol yap, ipucu ver — takımının tahmin etmesi için ne gerekiyorsa yap. Sadece yasak kelimeleri söyleme!" data-de="Beschreibe, spiele vor, gib Hinweise — tue alles, damit dein Team rät. Nur die verbotenen Wörter nicht sagen!">Describe, act, hint — do whatever it takes to get your team to guess. Just don't say the forbidden words!</p>
+                </div>
+                <div class="step reveal reveal-delay-2">
+                    <div class="step-num">03</div>
+                    <h4 data-en="Race the Clock" data-tr="Zamana Karşı Yarış" data-de="Gegen die Uhr">Race the Clock</h4>
+                    <p data-en="The timer is ticking. Your team shouts answers while the other team watches for slip-ups. Pure adrenaline." data-tr="Zamanlayıcı çalışıyor. Takımın cevapları bağırırken diğer takım hataları izliyor. Saf adrenalin." data-de="Die Uhr tickt. Dein Team ruft Antworten, während das andere Team auf Fehler achtet. Pures Adrenalin.">The timer is ticking. Your team shouts answers while the other team watches for slip-ups. Pure adrenaline.</p>
+                </div>
+                <div class="step reveal reveal-delay-3">
+                    <div class="step-num">04</div>
+                    <h4 data-en="Score & Celebrate" data-tr="Puanla ve Kutla" data-de="Punkte & Feiere">Score & Celebrate</h4>
+                    <p data-en="Every correct guess earns a point. Build streaks for bonus glory. The team with the most points wins bragging rights!" data-tr="Her doğru tahmin bir puan kazandırır. Seri yaparak bonus kazan. En çok puan alan takım övünme hakkını kazanır!" data-de="Jeder richtige Tipp gibt einen Punkt. Baue Serien für Bonusruhm auf. Das Team mit den meisten Punkten gewinnt die Angeber-Rechte!">Every correct guess earns a point. Build streaks for bonus glory. The team with the most points wins bragging rights!</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works" id="how-it-works">
-        <h2 class="section-title" data-en="How Taboo Shh! Works" data-tr="Tabu Şşş! Nasıl Oynanır" data-de="So funktioniert Tabu Psst!">How Taboo Shh! Works</h2>
-        <p class="section-subtitle" data-en="Describe the word, avoid the taboo clues, and let your team guess. Simple rules, endless fun for everyone!" data-tr="Kelimeyi anlatın, tabu ipuçlarından kaçının ve takımınızın tahmin etmesini sağlayın. Basit kurallar, herkes için sonsuz eğlence!" data-de="Beschreibe das Wort, vermeide die Tabu-Hinweise und lass dein Team raten. Einfache Regeln, endloser Spaß für alle!">Describe the word, avoid the taboo clues, and let your team guess. Simple rules, endless fun for everyone!</p>
-        <div class="how-content">
-            <div class="how-features">
-                <div class="feature-item">
-                    <div class="feature-number">1</div>
-                    <div>
-                        <h4 data-en="See the Word" data-tr="Kelimeyi Gör" data-de="Sieh das Wort">See the Word</h4>
-                        <p data-en="A secret word appears with forbidden clues you can't say." data-tr="Söyleyemeyeceğiniz yasak ipuçlarıyla birlikte gizli bir kelime belirir." data-de="Ein geheimes Wort erscheint mit verbotenen Hinweisen, die du nicht sagen darfst.">A secret word appears with forbidden clues you can't say.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-number">2</div>
-                    <div>
-                        <h4 data-en="Describe It" data-tr="Anlat" data-de="Beschreibe es">Describe It</h4>
-                        <p data-en="Get creative! Explain without using taboo words." data-tr="Yaratıcı olun! Tabu kelimeleri kullanmadan açıklayın." data-de="Sei kreativ! Erkläre ohne die Tabu-Wörter zu benutzen.">Get creative! Explain without using taboo words.</p>
-                    </div>
-                </div>
+    <!-- ════ FEATURES ════ -->
+    <section id="features">
+        <div class="features-inner">
+            <div class="features-header">
+                <span class="section-tag reveal" data-en="Features" data-tr="Özellikler" data-de="Funktionen">Features</span>
+                <h2 class="section-title reveal" data-en="Built for real<br>game nights" data-tr="Gerçek oyun geceleri<br>için tasarlandı" data-de="Gemacht für echte<br>Spieleabende">Built for real<br>game nights</h2>
+                <p class="section-sub reveal" data-en="Open the app and play. No sign-ups, no internet required." data-tr="Uygulamayı aç ve oyna. Kayıt ve internet gerekmez." data-de="App öffnen und spielen. Keine Anmeldung, kein Internet nötig.">Open the app and play. No sign-ups, no internet required.</p>
             </div>
-            <div class="how-phone">
-                <div class="how-circle"></div>
-                <img src="icon.png" alt="Taboo Shh! Gameplay">
-            </div>
-            <div class="how-features">
-                <div class="feature-item right">
-                    <div class="feature-number">3</div>
-                    <div>
-                        <h4 data-en="Team Guesses" data-tr="Takım Tahmin Eder" data-de="Team rät">Team Guesses</h4>
-                        <p data-en="Your team shouts answers before time runs out!" data-tr="Takımınız süre dolmadan cevapları bağırsın!" data-de="Dein Team ruft Antworten, bevor die Zeit abläuft!">Your team shouts answers before time runs out!</p>
-                    </div>
+            <div class="feature-grid">
+                <div class="feature-card reveal">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+                    <h4 data-en="Custom Rules" data-tr="Özel Kurallar" data-de="Eigene Regeln">Custom Rules</h4>
+                    <p data-en="Timer, rounds, passes, scoring — your call." data-tr="Zamanlayıcı, turlar, paslar, puanlama — senin kararın." data-de="Timer, Runden, Pässe, Punkte — du entscheidest.">Timer, rounds, passes, scoring — your call.</p>
                 </div>
-                <div class="feature-item right">
-                    <div class="feature-number">4</div>
-                    <div>
-                        <h4 data-en="Score and Win" data-tr="Puan Al ve Kazan" data-de="Punkte und gewinne">Score and Win</h4>
-                        <p data-en="Correct guess? Score a point. Most points wins!" data-tr="Doğru tahmin? Bir puan kazanın. En çok puan alan kazanır!" data-de="Richtig geraten? Punkt! Die meisten Punkte gewinnen!">Correct guess? Score a point. Most points wins!</p>
-                    </div>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
+                    <h4 data-en="Fully Offline" data-tr="Tamamen Çevrimdışı" data-de="Komplett offline">Fully Offline</h4>
+                    <p data-en="No internet needed. Zero data, zero lag." data-tr="İnternet gerekmez. Sıfır veri, sıfır gecikme." data-de="Kein Internet nötig. Null Daten, null Verzögerung.">No internet needed. Zero data, zero lag.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="features" id="features">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 60px;" data-en="Ready to Play?" data-tr="Oynamaya Hazır mısınız?" data-de="Bereit zu spielen?">Ready to Play?</h2>
-        <div class="features-content">
-            <div class="features-image"><img src="icon.png" alt="Taboo Shh! Features"></div>
-            <div>
-                <div class="features-list">
-                    <div class="feature-card">
-                        <div class="feature-card-icon">S</div>
-                        <h4 data-en="Fully Customizable" data-tr="Tamamen Özelleştirilebilir" data-de="Voll anpassbar">Fully Customizable</h4>
-                        <p data-en="Adjust timer, rounds, pass limits, and scoring rules to your liking." data-tr="Zamanlayıcı, tur sayısı, pas limitleri ve puanlama kurallarını istediğiniz gibi ayarlayın." data-de="Passe Timer, Runden, Pass-Limits und Punkteregeln nach deinen Wünschen an.">Adjust timer, rounds, pass limits, and scoring rules to your liking.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">O</div>
-                        <h4 data-en="Works Offline" data-tr="Çevrimdışı Çalışır" data-de="Offline spielbar">Works Offline</h4>
-                        <p data-en="No internet needed. Play anywhere, anytime." data-tr="İnternet gerekmez. Her yerde, her zaman oynayın." data-de="Kein Internet nötig. Spiele überall, jederzeit.">No internet needed. Play anywhere, anytime.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">C</div>
-                        <h4 data-en="Multiple Categories" data-tr="Birden Fazla Kategori" data-de="Mehrere Kategorien">Multiple Categories</h4>
-                        <p data-en="Movies, Sports, Food and Drinks, and more!" data-tr="Filmler, Spor, Yiyecek ve İçecekler ve daha fazlası!" data-de="Filme, Sport, Essen & Trinken und mehr!">Movies, Sports, Food and Drinks, and more!</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-card-icon">L</div>
-                        <h4 data-en="Three Languages" data-tr="Üç Dil" data-de="Drei Sprachen">Three Languages</h4>
-                        <p data-en="Play in English, German, or Turkish with full support." data-tr="Tam destekle İngilizce, Almanca veya Türkçe oynayın." data-de="Spiele auf Englisch, Deutsch oder Türkisch mit voller Unterstützung.">Play in English, German, or Turkish with full support.</p>
-                    </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg></div>
+                    <h4 data-en="12 Themed Decks" data-tr="12 Temalı Deste" data-de="12 Themendecks">12 Themed Decks</h4>
+                    <p data-en="Movies, Sports, Science, Food &amp; more." data-tr="Filmler, Spor, Bilim, Yemek ve daha fazlası." data-de="Filme, Sport, Wissenschaft, Essen &amp; mehr.">Movies, Sports, Science, Food &amp; more.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                    <h4 data-en="3 Languages" data-tr="3 Dil" data-de="3 Sprachen">3 Languages</h4>
+                    <p data-en="English, German, and Turkish — fully localized." data-tr="İngilizce, Almanca ve Türkçe — tam yerelleştirildi." data-de="Englisch, Deutsch und Türkisch — komplett lokalisiert.">English, German, and Turkish — fully localized.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+                    <h4 data-en="Video Clips" data-tr="Video Klipler" data-de="Videoclips">Video Clips</h4>
+                    <p data-en="Record rounds and share result cards." data-tr="Turları kaydet ve skor kartlarını paylaş." data-de="Runden aufnehmen und Ergebniskarten teilen.">Record rounds and share result cards.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <h4 data-en="Privacy First" data-tr="Önce Gizlilik" data-de="Datenschutz zuerst">Privacy First</h4>
+                    <p data-en="No accounts, no tracking, no ads — ever." data-tr="Hesap yok, takip yok, reklam yok — asla." data-de="Keine Konten, kein Tracking, keine Werbung — nie.">No accounts, no tracking, no ads — ever.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="download" id="download">
-        <div class="download-content">
-            <div class="download-text">
-                <h2 data-en="Download Taboo Shh!" data-tr="Tabu Şşş! İndirin" data-de="Lade Tabu Psst! herunter">Download Taboo Shh!</h2>
-                <p data-en="Experience hassle-free word guessing with Taboo Shh! Available now on iOS." data-tr="Tabu Şşş! ile sorunsuz kelime tahmininin keyfini çıkarın! Şimdi iOS'ta mevcut." data-de="Erlebe problemloses Wortraten mit Tabu Psst! Jetzt verfügbar für iOS.">Experience hassle-free word guessing with Taboo Shh! Available now on iOS.</p>
-                <a href="https://apps.apple.com/us/app/taboo-shh/id6757612362" target="_blank" class="download-btn" data-en="Download Now" data-tr="Şimdi İndir" data-de="Jetzt herunterladen">Download Now</a>
-            </div>
-            <div class="download-image"><img src="icon.png" alt="Download Taboo Shh!"></div>
+    <!-- ════ CTA ════ -->
+    <section class="cta" id="download">
+        <div class="cta-inner">
+            <img src="icon-transparent.png" alt="Shh!" class="hero-logo reveal">
+            <h2 class="reveal" data-en="Your next game night<br>starts here" data-tr="Bir sonraki oyun gecen<br>burada başlıyor" data-de="Dein nächster Spieleabend<br>beginnt hier">Your next game night<br>starts here</h2>
+            <p class="reveal" data-en="Free to download. No account needed. No ads. No data collected. Just open and play — it takes less than 10 seconds to start your first round." data-tr="Ücretsiz indir. Hesap gerekmez. Reklam yok. Veri toplanmaz. Aç ve oyna — ilk turunu başlatmak 10 saniyeden az sürer." data-de="Kostenlos herunterladen. Kein Konto nötig. Keine Werbung. Keine Daten gesammelt. Einfach öffnen und spielen — weniger als 10 Sekunden bis zur ersten Runde.">Free to download. No account needed. No ads. No data collected. Just open and play — it takes less than 10 seconds to start your first round.</p>
+            <a href="https://apps.apple.com/us/app/taboo-shh/id6757612362" target="_blank" class="cta-btn reveal" data-en="Download Free on App Store →" data-tr="App Store'dan Ücretsiz İndir →" data-de="Kostenlos im App Store laden →">Download Free on App Store →</a>
         </div>
     </section>
 
+    <!-- ════ SUPPORT ════ -->
     <section class="support" id="support">
-        <h2 data-en="Need Help?" data-tr="Yardıma mı İhtiyacınız Var?" data-de="Brauchst du Hilfe?">Need Help?</h2>
-        <p data-en="Have questions, feedback, or need support? We are here to help!" data-tr="Sorularınız, geri bildirimleriniz veya desteğe mi ihtiyacınız var? Yardımcı olmak için buradayız!" data-de="Hast du Fragen, Feedback oder brauchst Unterstützung? Wir sind hier, um zu helfen!">Have questions, feedback, or need support? We are here to help!</p>
-        <a href="mailto:dev.ozelalisen@gmail.com" class="support-btn" data-en="Contact Support" data-tr="Destekle İletişime Geçin" data-de="Support kontaktieren">Contact Support</a>
+        <h2 class="reveal" data-en="Questions or feedback?" data-tr="Soruların veya geri bildirimin mi var?" data-de="Fragen oder Feedback?">Questions or feedback?</h2>
+        <p class="reveal" data-en="Shh! is built by an indie developer who reads every message. Bug reports, feature ideas, or just saying hi — all welcome." data-tr="Shh! her mesajı okuyan bağımsız bir geliştirici tarafından yapıldı. Hata raporları, özellik fikirleri veya sadece merhaba demek — hepsi memnuniyetle karşılanır." data-de="Shh! wird von einem Indie-Entwickler gebaut, der jede Nachricht liest. Fehlerberichte, Feature-Ideen oder einfach Hallo sagen — alles willkommen.">Shh! is built by an indie developer who reads every message. Bug reports, feature ideas, or just saying hi — all welcome.</p>
+        <a href="mailto:dev.ozelalisen@gmail.com" class="support-btn reveal" data-en="Send a Message" data-tr="Mesaj Gönder" data-de="Nachricht senden">Send a Message</a>
     </section>
 
     <footer class="footer">
@@ -627,92 +744,76 @@
             <a href="#support" data-en="Support" data-tr="Destek" data-de="Support">Support</a>
             <a href="#features" data-en="Features" data-tr="Özellikler" data-de="Funktionen">Features</a>
         </div>
-        <p class="footer-copy">© 2025 Ozel Alisen Berat. All rights reserved.</p>
+        <p class="footer-copy" data-en="© 2025–2026 Ozel Alisen Berat. Made with care, no data collected." data-tr="© 2025–2026 Ozel Alisen Berat. Özenle yapıldı, veri toplanmadı." data-de="© 2025–2026 Ozel Alisen Berat. Mit Sorgfalt gemacht, keine Daten gesammelt.">© 2025–2026 Ozel Alisen Berat. Made with care, no data collected.</p>
     </footer>
 
     <script>
+        /* ── Language switching ───── */
         let currentLang = 'en';
-
         const metaDescriptions = {
-            en: 'Taboo Shh! is the ultimate word-guessing party game for iOS. Challenge your friends and family!',
-            tr: 'Tabu Şşş! iOS için en iyi kelime tahmin parti oyunu. Arkadaşlarınıza ve ailenize meydan okuyun!',
-            de: 'Tabu Psst! ist das ultimative Wörter-Ratespiel für iOS. Fordere deine Freunde und Familie heraus!'
+            en: 'Shh! is the ultimate word-guessing party game for iOS. Challenge your friends and family!',
+            tr: 'Shh! iOS için en iyi kelime tahmin parti oyunu. Arkadaşlarınıza ve ailenize meydan okuyun!',
+            de: 'Shh! ist das ultimative Wörter-Ratespiel für iOS. Fordere deine Freunde und Familie heraus!'
         };
-
         const ogTitles = {
-            en: 'Taboo Shh! - The Ultimate Word Guessing Party Game',
-            tr: 'Tabu Şşş! - En İyi Kelime Tahmin Parti Oyunu',
-            de: 'Tabu Psst! - Das ultimative Wörter-Ratespiel'
+            en: 'Shh! - The Ultimate Word Guessing Party Game',
+            tr: 'Shh! - En İyi Kelime Tahmin Parti Oyunu',
+            de: 'Shh! - Das ultimative Wörter-Ratespiel'
         };
-
         function setLanguage(lang) {
             currentLang = lang;
             document.documentElement.lang = lang;
-            
-            // Update URL with language parameter for sharing
             const url = new URL(window.location);
             url.searchParams.set('lang', lang);
             window.history.replaceState({}, '', url);
-            
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
-
             document.querySelectorAll('[data-en]').forEach(el => {
                 const text = el.dataset[lang];
                 if (text) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = text;
-                    } else {
-                        el.innerHTML = text;
-                    }
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
+                    else el.innerHTML = text;
                 }
             });
-
-            // Update page title
-            const titles = { en: 'Taboo Shh! - The Ultimate Word Guessing Party Game', tr: 'Tabu Şşş! - En İyi Kelime Tahmin Parti Oyunu', de: 'Tabu Psst! - Das ultimative Wörter-Ratespiel' };
+            const titles = { en: 'Shh! - The Ultimate Word Guessing Party Game', tr: 'Shh! - En İyi Kelime Tahmin Parti Oyunu', de: 'Shh! - Das ultimative Wörter-Ratespiel' };
             document.title = titles[lang] || titles.en;
-
-            // Update meta description
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.content = metaDescriptions[lang] || metaDescriptions.en;
-
-            // Update Open Graph meta tags
-            const ogTitle = document.querySelector('meta[property="og:title"]');
-            const ogDesc = document.querySelector('meta[property="og:description"]');
-            const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-            const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-            
-            if (ogTitle) ogTitle.content = ogTitles[lang] || ogTitles.en;
-            if (ogDesc) ogDesc.content = metaDescriptions[lang] || metaDescriptions.en;
-            if (twitterTitle) twitterTitle.content = ogTitles[lang] || ogTitles.en;
-            if (twitterDesc) twitterDesc.content = metaDescriptions[lang] || metaDescriptions.en;
-
-            // Update canonical URL with language
+            ['og:title', 'og:description'].forEach((prop, i) => {
+                const el = document.querySelector(`meta[property="${prop}"]`);
+                if (el) el.content = (i === 0 ? ogTitles : metaDescriptions)[lang] || (i === 0 ? ogTitles : metaDescriptions).en;
+            });
+            ['twitter:title', 'twitter:description'].forEach((name, i) => {
+                const el = document.querySelector(`meta[name="${name}"]`);
+                if (el) el.content = (i === 0 ? ogTitles : metaDescriptions)[lang] || (i === 0 ? ogTitles : metaDescriptions).en;
+            });
             const canonical = document.querySelector('link[rel="canonical"]');
             if (canonical) {
                 const baseUrl = 'https://ozelalisen.github.io/taboo-shh-privacy/landing.html';
                 canonical.href = lang === 'en' ? baseUrl : `${baseUrl}?lang=${lang}`;
             }
-
             localStorage.setItem('taboo-lang', lang);
         }
-
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
         });
-
-        // Check URL parameter first, then localStorage, then default to 'en'
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
         const savedLang = localStorage.getItem('taboo-lang');
         const validLangs = ['en', 'tr', 'de'];
-        
-        if (urlLang && validLangs.includes(urlLang)) {
-            setLanguage(urlLang);
-        } else if (savedLang && validLangs.includes(savedLang)) {
-            setLanguage(savedLang);
-        }
+        if (urlLang && validLangs.includes(urlLang)) setLanguage(urlLang);
+        else if (savedLang && validLangs.includes(savedLang)) setLanguage(savedLang);
+
+        /* ── Scroll reveal ───── */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
